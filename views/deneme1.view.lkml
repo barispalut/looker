@@ -47,7 +47,7 @@ from
 (
 --All Events
     select distinct
-    user_pseudo_id as user_id,
+    user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as event_time,
     TIMESTAMP_MICROS(user_first_touch_timestamp) as install_date,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'current_loading_time') as numeric) as current_loading_time,
@@ -88,7 +88,7 @@ left join
  (
     select
     distinct
-    user_pseudo_id as user_id,
+    user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as Level_Start_Time,
     TIMESTAMP_MICROS (user_first_touch_timestamp) as install_date,
     --case when lead(TIMESTAMP_MICROS(event_timestamp))
@@ -118,7 +118,7 @@ left join
 (
     --Level_End_P1
     select distinct
-    user_pseudo_id as user_id,
+    user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as Level_End_Time,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
@@ -152,7 +152,7 @@ left join
 (
     --Level_End_P2
     select distinct
-    user_pseudo_id as user_id,
+    user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as Level_End_Time_P2,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
@@ -192,7 +192,7 @@ left join
 (
     --Level_End_P3
     select distinct
-    user_pseudo_id as user_id,
+    user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as Level_End_Time_P3,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
