@@ -64,7 +64,6 @@ from
     where 1=1
     --and TIMESTAMP_MICROS (user_first_touch_timestamp) >= "2022-05-01"
     and event_name not in ("Level_End_P1","Level_End_P2","Level_End_P3","network_request", "Stage_End_Event_1")
-    and user_id not in ("D86E26D7-DBD4-4C45-B1F4-3EB260A73127")
     --and platform in ("1146")
     ---and app_info.version in ("1146")
     --order by 1,2
