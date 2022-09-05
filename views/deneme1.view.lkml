@@ -50,7 +50,7 @@ from
     select distinct
     user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as event_time,
-    TIMESTAMP_MICROS(user_first_touch_timestamp) as install_date,
+    min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'current_loading_time') as numeric) as current_loading_time,
     event_name,
     platform,
