@@ -38,8 +38,9 @@ e3.pb1_inventory,
 e3.pb2_inventory,
 e3.pb3_inventory,
 e3.remaining_star,
-h.test_name,
-h.test_variant,
+h.test_55_variant,
+h.test_54_variant,
+h.test_53_variant,
 h.platform,
 h.app_version,
 h.country
@@ -55,20 +56,9 @@ from
     platform,
     app_info.version as app_version,
     geo.country as country,
-    (SELECT key FROM UNNEST(user_properties) WHERE key in ('firebase_exp_46','firebase_exp_45','firebase_exp_48','firebase_exp_49','firebase_exp_50','firebase_exp_51','firebase_exp_52',
-    'firebase_exp_53','firebase_exp_54','firebase_exp_55','firebase_exp_56','firebase_exp_57','firebase_exp_58','firebase_exp_59','firebase_exp_60','firebase_exp_61','firebase_exp_62',
-    'firebase_exp_63','firebase_exp_64','firebase_exp_65','firebase_exp_66','firebase_exp_67','firebase_exp_68','firebase_exp_69','firebase_exp_70','firebase_exp_71','firebase_exp_72',
-    'firebase_exp_73','firebase_exp_74','firebase_exp_75','firebase_exp_76','firebase_exp_77','firebase_exp_78','firebase_exp_79','firebase_exp_80','firebase_exp_81','firebase_exp_82',
-    'firebase_exp_83','firebase_exp_84','firebase_exp_85','firebase_exp_86','firebase_exp_87','firebase_exp_88','firebase_exp_89','firebase_exp_90','firebase_exp_91','firebase_exp_92',
-    'firebase_exp_93','firebase_exp_94','firebase_exp_95','firebase_exp_96','firebase_exp_97','firebase_exp_98','firebase_exp_99','firebase_exp_100','firebase_exp_101','firebase_exp_102'
-    )) as test_name,
-    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_46','firebase_exp_45','firebase_exp_48','firebase_exp_49','firebase_exp_50','firebase_exp_51','firebase_exp_52',
-    'firebase_exp_53','firebase_exp_54','firebase_exp_55','firebase_exp_56','firebase_exp_57','firebase_exp_58','firebase_exp_59','firebase_exp_60','firebase_exp_61','firebase_exp_62',
-    'firebase_exp_63','firebase_exp_64','firebase_exp_65','firebase_exp_66','firebase_exp_67','firebase_exp_68','firebase_exp_69','firebase_exp_70','firebase_exp_71','firebase_exp_72',
-    'firebase_exp_73','firebase_exp_74','firebase_exp_75','firebase_exp_76','firebase_exp_77','firebase_exp_78','firebase_exp_79','firebase_exp_80','firebase_exp_81','firebase_exp_82',
-    'firebase_exp_83','firebase_exp_84','firebase_exp_85','firebase_exp_86','firebase_exp_87','firebase_exp_88','firebase_exp_89','firebase_exp_90','firebase_exp_91','firebase_exp_92',
-    'firebase_exp_93','firebase_exp_94','firebase_exp_95','firebase_exp_96','firebase_exp_97','firebase_exp_98','firebase_exp_99','firebase_exp_100','firebase_exp_101','firebase_exp_102'
-    )) as integer) as test_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_55')) as integer) as test_55_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_54')) as integer) as test_54_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_54')) as integer) as test_53_variant,
     from
     (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
@@ -226,6 +216,7 @@ and s.version = e3.version
 and s.Level_Start_Time < e3.Level_End_Time_P3
 and s.Next_Level_Start_Time > e3.Level_End_Time_P3
 --order by 1,3
+
 
 
 
@@ -427,16 +418,24 @@ and s.Next_Level_Start_Time > e3.Level_End_Time_P3
   }
 
 
-  dimension: test_name {
-    type: string
-    sql:  ${TABLE}.test_name ;;
+
+
+  dimension: test_55_variant {
+    type: number
+    sql:  ${TABLE}.test_55_variant ;;
   }
 
 
 
-  dimension: test_variant {
+  dimension: test_54_variant {
     type: number
-    sql:  ${TABLE}.test_variant ;;
+    sql:  ${TABLE}.test_54_variant ;;
+  }
+
+
+  dimension: test_53_variant {
+    type: number
+    sql:  ${TABLE}.test_53_variant ;;
   }
 
 
