@@ -531,7 +531,7 @@ and cs.event_time = h.event_time
 
 
   dimension: Coin_Earn_Info {
-    type: number
+    type: string
     sql:  ${TABLE}.coin_earn_info ;;
   }
 
@@ -541,11 +541,21 @@ and cs.event_time = h.event_time
   }
 
   dimension: Coin_Spent_Info {
-    type: number
+    type: string
     sql:  ${TABLE}.coin_spent_info ;;
   }
 
 
+
+  dimension: Level_Coin_Earn {
+    type: number
+    sql:  sum(${TABLE}.coin_earn_amount) over (partition by ${TABLE}.user_id, ${TABLE}.level_id, ${TABLE}.collection_id) ;;
+  }
+
+  dimension: Level_Coin_Spent {
+    type: number
+    sql:  sum(${TABLE}.coin_spent_amount) over (partition by ${TABLE}.user_id, ${TABLE}.level_id, ${TABLE}.collection_id) ;;
+  }
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
