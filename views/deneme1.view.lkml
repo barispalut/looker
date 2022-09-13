@@ -10,11 +10,10 @@ h.event_name,
 h.current_loading_time,
 s.Level_Start_Time,
 e1.Level_End_Time,
-e2.Level_End_Time_P2,
-e3.Level_End_Time_P3,
 s.Next_Level_Start_Time,
-s.collection_id,
-s.level_id,
+h.collection_id,
+h.level_id,
+h.level_retry_count,
 e1.win,
 e1.play_time,
 e1.retry_count_lifetime,
@@ -38,9 +37,15 @@ e3.pb1_inventory,
 e3.pb2_inventory,
 e3.pb3_inventory,
 e3.remaining_star,
+ce.coin_earn_amount,
+ce.coin_earn_info,
+cs.coin_spent_amount,
+cs.coin_spent_info,
 h.test_55_variant,
 h.test_54_variant,
 h.test_53_variant,
+h.test_56_variant,
+h.test_57_variant,
 h.platform,
 h.app_version,
 h.country
@@ -52,21 +57,22 @@ from
     TIMESTAMP_MICROS(event_timestamp) as event_time,
     min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'current_loading_time') as numeric) as current_loading_time,
+    cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
+    cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
+    cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
     event_name,
     platform,
     app_info.version as app_version,
     geo.country as country,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_55')) as integer) as test_55_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_54')) as integer) as test_54_variant,
-    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_54')) as integer) as test_53_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_53')) as integer) as test_53_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_56')) as integer) as test_56_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_57')) as integer) as test_57_variant,
     from
     (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
-    --and TIMESTAMP_MICROS (user_first_touch_timestamp) >= "2022-05-01"
     and event_name not in ("Level_End_P1","Level_End_P2","Level_End_P3","network_request", "Stage_End_Event_1")
-    --and platform in ("1146")
-    ---and app_info.version in ("1146")
-    --order by 1,2
 ) h
 left join
 (
@@ -81,23 +87,15 @@ left join
     user_id as user_id,
     TIMESTAMP_MICROS(event_timestamp) as Level_Start_Time,
     TIMESTAMP_MICROS (user_first_touch_timestamp) as install_date,
-    --case when lead(TIMESTAMP_MICROS(event_timestamp))
-   -- over (partition by user_pseudo_id  order by TIMESTAMP_MICROS(event_timestamp) asc) is not null then lead(TIMESTAMP_MICROS(event_timestamp)) over (partition by user_pseudo_id  order by TIMESTAMP_MICROS(event_timestamp) asc) else current_timestamp end as
-   -- Next_Level_Start_Time,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
     platform,
     app_info.version as version,
     geo.country as country
     from
-    (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
+   (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
-    --and TIMESTAMP_MICROS (user_first_touch_timestamp) >= "2022-05-01"
     and event_name in ("Level_Start_P1")
-    --and platform in ("1146")
-    --and app_info.version in ("1146")
-    --and user_pseudo_id = "00041C5E6AA946EE81F8D2D2E22ADEFB"
-    --order by 1,2
 )
 --order by 1,3
 ) s
@@ -123,14 +121,9 @@ left join
     app_info.version,
     geo.country
     from
-    (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%} TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
+    (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
-    --and TIMESTAMP_MICROS (user_first_touch_timestamp) >= "2022-05-01"
     and event_name in ("Level_End_P1")
-    --and platform in ("1146")
-    --and app_info.version in ("1146")
-    --and _TABLE_SUFFIX BETWEEN (SELECT partition_date_start FROM vars) AND (SELECT partition_date_end FROM vars)
-    --order by 1,2
 ) e1
 on s.user_id = e1.user_id
 and s.level_id = e1.level_id
@@ -165,12 +158,7 @@ left join
     from
     (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
-    --and TIMESTAMP_MICROS (user_first_touch_timestamp) >= "2022-05-01"
     and event_name in ("Level_End_P2")
-    --and platform  in ("1146")
-    --and app_info.version in ("1146")
-    --and _TABLE_SUFFIX BETWEEN (SELECT partition_date_start FROM vars) AND (SELECT partition_date_end FROM vars)
-    --order by 1,2
 ) e2
 on s.user_id = e2.user_id
 and s.level_id = e2.level_id
@@ -201,12 +189,8 @@ left join
     from
     (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
-    --and TIMESTAMP_MICROS (user_first_touch_timestamp) >= "2022-05-01"
     and event_name in ("Level_End_P3")
-    --and app_info.version in ("1146")
-    --and platform in ("1146")
-    --and _TABLE_SUFFIX BETWEEN (SELECT partition_date_start FROM vars) AND (SELECT partition_date_end FROM vars)
-    --order by 1,2
+
 ) e3
 on s.user_id = e3.user_id
 and s.level_id = e3.level_id
@@ -214,7 +198,40 @@ and s.collection_id = e3.collection_id
 and s.version = e3.version
 and s.Level_Start_Time < e3.Level_End_Time_P3
 and s.Next_Level_Start_Time > e3.Level_End_Time_P3
---order by 1,3
+left join
+(
+    --Coin Earn
+    select distinct
+    user_id as user_id,
+    TIMESTAMP_MICROS(event_timestamp) as event_time,
+    cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'amount') as integer) as coin_earn_amount,
+    (SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'info') as coin_earn_info
+
+    from
+    (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
+    where 1=1
+    and event_name in ('coin_earn')
+) ce
+on ce.user_id=h.user_id
+and ce.event_time = h.event_time
+left join
+(
+    --Coin Spent
+    select distinct
+    user_id as user_id,
+    TIMESTAMP_MICROS(event_timestamp) as event_time,
+    cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'amount') as integer) as coin_spent_amount,
+    (SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'info') as coin_spent_info
+
+    from
+    (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
+    where 1=1
+    and event_name in ('coin_spend')
+) cs
+on cs.user_id = h.user_id
+and cs.event_time = h.event_time
+
+
 
 
 
@@ -438,6 +455,19 @@ and s.Next_Level_Start_Time > e3.Level_End_Time_P3
   }
 
 
+  dimension: test_56_variant {
+    type: number
+    sql:  ${TABLE}.test_56_variant ;;
+  }
+
+
+  dimension: test_57_variant {
+    type: number
+    sql:  ${TABLE}.test_57_variant ;;
+  }
+
+
+
   dimension:  platform {
     type: string
     sql:  ${TABLE}.platform ;;
@@ -491,6 +521,30 @@ and s.Next_Level_Start_Time > e3.Level_End_Time_P3
     sql: cast(CEILING(date_diff(current_timestamp(), ${TABLE}.Install_Date, second)/60/60/24) as integer) ;;
 
   }
+
+
+  dimension: Coin_Earn_Amount {
+    type: number
+    sql:  ${TABLE}.coin_earn_amount ;;
+  }
+
+
+
+  dimension: Coin_Earn_Info {
+    type: number
+    sql:  ${TABLE}.coin_earn_info ;;
+  }
+
+  dimension: Coin_Spent_Amount {
+    type: number
+    sql:  ${TABLE}.coin_spent_amount ;;
+  }
+
+  dimension: Coin_Spent_Info {
+    type: number
+    sql:  ${TABLE}.coin_spent_info ;;
+  }
+
 
 
   # # You can specify the table name if it's different from the view name:
