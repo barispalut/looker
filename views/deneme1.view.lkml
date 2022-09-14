@@ -547,7 +547,7 @@ and cs.event_time = h.event_time
 
 
 
-  dimension: Level_Coin_Earn {
+  measure: Level_Coin_Earn {
     type: number
     sql:  sum(${TABLE}.coin_earn_amount) over (partition by ${TABLE}.user_id, ${TABLE}.level_id, ${TABLE}.collection_id) ;;
   }
