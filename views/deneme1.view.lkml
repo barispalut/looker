@@ -512,13 +512,13 @@ and cs.event_time = h.event_time
 
   dimension: Period_Day{
     type: number
-    sql: cast(CEILING(date_diff(${TABLE}.event_time , ${TABLE}.Install_Date, second)/60/60/24) as integer) ;;
+    sql: date_diff(${TABLE}.event_time , ${TABLE}.Install_Date, day) ;;
 
   }
 
   dimension: Time_Since_Install{
     type: number
-    sql: cast(CEILING(date_diff(current_timestamp(), ${TABLE}.Install_Date, second)/60/60/24) as integer) ;;
+    sql: date_diff(current_timestamp(), ${TABLE}.Install_Date, day) ;;
 
   }
 
