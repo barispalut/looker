@@ -43,7 +43,7 @@ cs.coin_spent_amount,
 cs.coin_spent_info,
 h.test_55_variant,
 h.test_54_variant,
-h.test_53_variant,
+h.test_60_variant,
 h.test_56_variant,
 h.test_57_variant,
 h.platform,
@@ -66,7 +66,7 @@ from
     geo.country as country,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_55')) as integer) as test_55_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_54')) as integer) as test_54_variant,
-    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_53')) as integer) as test_53_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_60')) as integer) as test_60_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_56')) as integer) as test_56_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_57')) as integer) as test_57_variant,
     from
@@ -113,7 +113,7 @@ left join
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'win') as integer) as win,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'play_time') as numeric) as play_time,
     cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_lifetime') as integer) as retry_count_lifetime,
-    (row_number() over (partition by user_pseudo_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer),app_info.version
+    (row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer),app_info.version
     order by TIMESTAMP_MICROS(event_timestamp))) -1 as Retry_Count,
     row_number() over (partition by user_pseudo_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer),app_info.version
     order by TIMESTAMP_MICROS(event_timestamp) desc) as Last_to_First,
@@ -449,9 +449,9 @@ and cs.event_time = h.event_time
   }
 
 
-  dimension: test_53_variant {
+  dimension: test_60_variant {
     type: number
-    sql:  ${TABLE}.test_53_variant ;;
+    sql:  ${TABLE}.test_60_variant ;;
   }
 
 
@@ -547,15 +547,12 @@ and cs.event_time = h.event_time
 
 
 
-  dimension: Level_Coin_Earn {
-    type: number
-    sql:   sum(${TABLE}.coin_earn_amount) over (partition by ${TABLE}.user_id, ${TABLE}.level_id, ${TABLE}.collection_id) ;;
-  }
 
-  dimension: Level_Coin_Spent {
-    type: number
-    sql:  sum(${TABLE}.coin_spent_amount) over (partition by ${TABLE}.user_id, ${TABLE}.level_id, ${TABLE}.collection_id) ;;
-  }
+
+
+
+
+
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
