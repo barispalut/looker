@@ -42,7 +42,7 @@ ce.coin_earn_info,
 cs.coin_spent_amount,
 cs.coin_spent_info,
 h.test_55_variant,
-h.test_54_variant,
+h.test_58_variant,
 h.test_60_variant,
 h.test_56_variant,
 h.test_57_variant,
@@ -65,7 +65,7 @@ from
     app_info.version as app_version,
     geo.country as country,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_55')) as integer) as test_55_variant,
-    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_54')) as integer) as test_54_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_58')) as integer) as test_58_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_60')) as integer) as test_60_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_56')) as integer) as test_56_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_57')) as integer) as test_57_variant,
@@ -443,9 +443,9 @@ and cs.event_time = h.event_time
 
 
 
-  dimension: test_54_variant {
+  dimension: test_58_variant {
     type: number
-    sql:  ${TABLE}.test_54_variant ;;
+    sql:  ${TABLE}.test_58_variant ;;
   }
 
 
