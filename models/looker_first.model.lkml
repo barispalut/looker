@@ -42,3 +42,6 @@ explore: events_20220726 {
 }
 
 explore: deneme1 {}
+
+
+explore: Retention {}
