@@ -46,6 +46,7 @@ h.test_58_variant,
 h.test_60_variant,
 h.test_56_variant,
 h.test_57_variant,
+h.test_61_variant,
 h.platform,
 h.app_version,
 h.country
@@ -69,6 +70,7 @@ from
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_60')) as integer) as test_60_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_56')) as integer) as test_56_variant,
     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_57')) as integer) as test_57_variant,
+    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_61')) as integer) as test_61_variant,
     from
     (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
     where 1=1
@@ -464,6 +466,13 @@ and cs.event_time = h.event_time
   dimension: test_57_variant {
     type: number
     sql:  ${TABLE}.test_57_variant ;;
+  }
+
+
+
+  dimension: test_61_variant {
+    type: number
+    sql:  ${TABLE}.test_61_variant ;;
   }
 
 

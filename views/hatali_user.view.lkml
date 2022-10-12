@@ -4,7 +4,7 @@ view: hatali_user {
 
 select distinct
 user_id,
-min(level_id) as min_level_id
+min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) as min_level_id
 from `big-blast.analytics_270556009.events_*`
 where 1=1
 and {%condition test_55_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_55') as integer) {%endcondition%}
