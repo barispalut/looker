@@ -256,14 +256,14 @@ and cs.event_time = h.event_time
 
   dimension_group: Install_Date {
     type: time
-    timeframes: [date,month,week]
+    timeframes: [date,month,week,time]
     sql: ${TABLE}.Install_Date
       ;;
   }
 
   dimension_group: event_time {
     type: time
-    timeframes: [date,month,week]
+    timeframes: [date,month,week,time]
     sql: ${TABLE}.event_time
       ;;
   }
@@ -296,7 +296,7 @@ and cs.event_time = h.event_time
 
   dimension_group: Next_Level_Start_Time  {
     type: time
-    timeframes: [date,month,week]
+    timeframes: [date,month,week,time]
     sql: ${TABLE}.Next_Level_Start_Time ;;
   }
 
