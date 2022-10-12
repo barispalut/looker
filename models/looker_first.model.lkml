@@ -41,7 +41,21 @@ explore: events_20220726 {
   }
 }
 
-explore: deneme1 {}
+
+
+explore: deneme1 {
+
+  join: hatali_user {
+
+    type: left_outer
+
+    sql_on: ${deneme1.user_id} = ${hatali_user.user_id} ;;
+
+    relationship: many_to_one
+
+  }
+
+}
 
 
 explore: Retention {}
