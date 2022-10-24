@@ -2,21 +2,19 @@ view: hatali_user {
   derived_table: {
     sql:
 
-select distinct
-user_id,
-min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) as min_level_id
-from `big-blast.analytics_270556009.events_*`
-where 1=1
-and {%condition test_55_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_55') as integer) {%endcondition%}
-and {%condition test_56_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_56') as integer) {%endcondition%}
-and {%condition test_57_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_57') as integer) {%endcondition%}
-and {%condition test_58_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_58') as integer) {%endcondition%}
-and {%condition test_59_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_59') as integer) {%endcondition%}
-and {%condition test_60_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_60') as integer) {%endcondition%}
-and {%condition test_61_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_61') as integer) {%endcondition%}
-and {%condition test_62_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_62') as integer) {%endcondition%}
-and {%condition test_63_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) {%endcondition%}
-group by 1
+    select distinct
+    user_id,
+    min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) as min_level_id
+    from `big-blast.analytics_270556009.events_*`
+    where 1=1
+    and {%condition test_55_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_55') as integer) {%endcondition%}
+    and {%condition test_56_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_56') as integer) {%endcondition%}
+    and {%condition test_57_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_57') as integer) {%endcondition%}
+    and {%condition test_58_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_58') as integer) {%endcondition%}
+    and {%condition test_59_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_59') as integer) {%endcondition%}
+    and {%condition test_60_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_60') as integer) {%endcondition%}
+    and {%condition test_61_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_61') as integer) {%endcondition%}
+    group by 1
 
 
 
@@ -54,7 +52,7 @@ group by 1
   filter: test_59_variant {
     type: number
 
-     }
+  }
 
 
   filter: test_60_variant {
@@ -64,18 +62,6 @@ group by 1
   }
 
   filter: test_61_variant {
-    type: number
-
-  }
-
-
-  filter: test_62_variant {
-    type: number
-
-  }
-
-
-  filter: test_63_variant {
     type: number
 
   }
