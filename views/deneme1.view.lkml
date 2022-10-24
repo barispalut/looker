@@ -47,6 +47,8 @@ view: deneme1{
     h.test_56_variant,
     h.test_57_variant,
     h.test_61_variant,
+    h.test_62_variant,
+    h.test_63_variant,
     h.platform,
     h.app_version,
     h.country
@@ -71,6 +73,8 @@ view: deneme1{
         cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_56')) as integer) as test_56_variant,
         cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_57')) as integer) as test_57_variant,
         cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_61')) as integer) as test_61_variant,
+        cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_62')) as integer) as test_62_variant,
+        cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_63')) as integer) as test_63_variant,
         from
         (select * from `big-blast.analytics_270556009.events_*` where  {%condition event_time%}  TIMESTAMP_MICROS(event_timestamp) {%endcondition%})
         where 1=1
@@ -474,6 +478,20 @@ view: deneme1{
     type: number
     sql:  ${TABLE}.test_61_variant ;;
   }
+
+
+
+  dimension: test_62_variant {
+    type: number
+    sql:  ${TABLE}.test_62_variant ;;
+  }
+
+
+  dimension: test_63_variant {
+    type: number
+    sql:  ${TABLE}.test_63_variant ;;
+  }
+
 
 
 

@@ -20,6 +20,9 @@ view: Retention {
                                                     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_60')) as integer) as test_60_variant,
                                                     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_56')) as integer) as test_56_variant,
                                                     cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_57')) as integer) as test_57_variant,
+                                                    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_61')) as integer) as test_61_variant,
+                                                    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_62')) as integer) as test_62_variant,
+                                                    cast ((SELECT value.string_value FROM UNNEST(user_properties) WHERE key in ('firebase_exp_63')) as integer) as test_63_variant,
                                                     TIMESTAMP_MICROS(event_timestamp) as event_time, min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
                                                     min(safe_cast(app_info.version as integer)) over (partition by user_id) as app_version, geo.country as country
                                                     FROM `big-blast.analytics_270556009.events_*`
@@ -33,6 +36,9 @@ view: Retention {
                                             and {%condition test_60_variant%} test_60_variant {%endcondition%}
                                             and {%condition test_56_variant%} test_56_variant {%endcondition%}
                                             and {%condition test_57_variant%} test_57_variant {%endcondition%}
+                                            and {%condition test_57_variant%} test_61_variant {%endcondition%}
+                                            and {%condition test_57_variant%} test_62_variant {%endcondition%}
+                                            and {%condition test_57_variant%} test_63_variant {%endcondition%}
                                             and {%condition app_version%} app_version {%endcondition%}
                                             and {%condition country%} country {%endcondition%}
 
@@ -91,6 +97,20 @@ view: Retention {
   filter: test_57_variant {
     type: number
 
+  }
+
+  filter: test_61_variant {
+    type: number
+
+  }
+
+  filter: test_62_variant {
+    type: number
+
+  }
+
+  filter: test_63_variant {
+    type: number
 
   }
 

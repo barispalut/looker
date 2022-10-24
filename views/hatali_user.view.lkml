@@ -14,6 +14,8 @@ view: hatali_user {
     and {%condition test_59_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_59') as integer) {%endcondition%}
     and {%condition test_60_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_60') as integer) {%endcondition%}
     and {%condition test_61_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_61') as integer) {%endcondition%}
+    and {%condition test_61_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_62') as integer) {%endcondition%}
+    and {%condition test_61_variant%} cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) {%endcondition%}
     group by 1
 
 
@@ -62,6 +64,17 @@ view: hatali_user {
   }
 
   filter: test_61_variant {
+    type: number
+
+  }
+
+
+  filter: test_62_variant {
+    type: number
+
+  }
+
+  filter: test_63_variant {
     type: number
 
   }
