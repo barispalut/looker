@@ -20,6 +20,16 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # }
 explore: event_info {
 
+join:level_start_p1  {
+  type: left_outer
+  sql_on: ${level_start_p1.Event_Time_time} = ${event_info.Event_Time_time}
+      and ${event_info.user_id}=${level_start_p1.user_id}
+      and ${level_start_p1.collection_id} = ${event_info.collection_id}
+      and ${event_info.level_id} = ${level_start_p1.level_id}
 
+      ;;
+  relationship: one_to_one
+
+}
 
 }
