@@ -26,6 +26,7 @@ join:level_start_p1  {
       and ${event_info.user_id}=${level_start_p1.user_id}
       and ${level_start_p1.collection_id} = ${event_info.collection_id}
       and ${event_info.level_id} = ${level_start_p1.level_id}
+      and ${event_info.level_retry_count} = ${level_start_p1.level_retry_count}
 
       ;;
   relationship: one_to_one

@@ -71,6 +71,10 @@ and event_name='Level_Start_P1'
     sql:  ${TABLE}.remaining_star ;;
   }
 
+  dimension: string_event_time {
+    type: string
+    sql:  ${TABLE}.event_time ;;
+  }
 
 
 }
