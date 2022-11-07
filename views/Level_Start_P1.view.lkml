@@ -5,7 +5,7 @@ view: level_start_p1 {
 SELECT
 user_id as user_id,
 min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
-TIMESTAMP_MICROS(event_timestamp) as level_start_p1_event_time,
+TIMESTAMP_MICROS(event_timestamp) as event_time,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
@@ -31,8 +31,8 @@ and event_name='Level_Start_P1'
 
   dimension_group: Event_Time {
     type: time
-    timeframes: [time,date,month,week]
-    sql: ${TABLE}.level_start_p1_event_time
+    timeframes: [date,month,week,time]
+    sql: ${TABLE}.event_time
       ;;
   }
 

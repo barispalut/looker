@@ -20,15 +20,6 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # }
 explore: event_info {
 
-  join: Level_Start_P1 {
 
-    type: left_outer
-
-    sql_on: ${event_info.user_id} = ${Level_Start_P1.user_id}
-            ;;
-
-    relationship: one_to_one
-
-  }
 
 }
