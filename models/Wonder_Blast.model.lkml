@@ -22,12 +22,8 @@ explore: event_info {
 
 join:level_start_p1  {
   type: left_outer
-  sql_on: ${level_start_p1.Event_Time_time} = ${event_info.Event_Time_time}
+  sql_on: ${event_info.time_key} = ${level_start_p1.time_key}
       and ${event_info.user_id}=${level_start_p1.user_id}
-      and ${level_start_p1.collection_id} = ${event_info.collection_id}
-      and ${event_info.level_id} = ${level_start_p1.level_id}
-      and ${event_info.level_retry_count} = ${level_start_p1.level_retry_count}
-
       ;;
   relationship: one_to_one
 
