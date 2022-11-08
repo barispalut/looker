@@ -48,17 +48,24 @@ join:level_end_p3  {
     relationship: one_to_one
   }
 
-  join:level_end_p4  {
+join:level_end_p4  {
     type: left_outer
     sql_on: ${event_info.time_key} = ${level_end_p4.time_key}
       and ${event_info.user_id} = ${level_end_p4.user_id};;
     relationship: one_to_one
   }
 
-  join:stage_end_event_1 {
+join:stage_end_event_1 {
     type: left_outer
     sql_on: ${event_info.time_key} = ${stage_end_event_1.time_key}
       and ${event_info.user_id} = ${stage_end_event_1.user_id};;
+    relationship: one_to_one
+  }
+
+  join:building_p1 {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${building_p1.time_key}
+      and ${event_info.user_id} = ${building_p1.user_id};;
     relationship: one_to_one
   }
 
