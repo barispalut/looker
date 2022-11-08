@@ -34,21 +34,28 @@ join:level_end_p1  {
   relationship: one_to_one
 }
 
-  join:level_end_p2  {
+join:level_end_p2  {
     type: left_outer
     sql_on: ${event_info.time_key} = ${level_end_p2.time_key}
       and ${event_info.user_id} = ${level_end_p2.user_id};;
     relationship: one_to_one
   }
 
-  join:level_end_p3  {
+join:level_end_p3  {
     type: left_outer
     sql_on: ${event_info.time_key} = ${level_end_p3.time_key}
       and ${event_info.user_id} = ${level_end_p3.user_id};;
     relationship: one_to_one
   }
 
-  join:test_properties  {
+  join:level_end_p4  {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${level_end_p4.time_key}
+      and ${event_info.user_id} = ${level_end_p4.user_id};;
+    relationship: one_to_one
+  }
+
+join:test_properties  {
     type: left_outer
     sql_on: ${test_properties.user_id} = ${event_info.user_id}
       and ${test_properties.time_key} = ${event_info.time_key};;
