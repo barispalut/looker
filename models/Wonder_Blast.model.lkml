@@ -34,6 +34,13 @@ join:level_end_p1  {
   relationship: one_to_one
 }
 
+  join:level_end_p2  {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${level_end_p2.time_key}
+      and ${event_info.user_id} = ${level_end_p2.user_id};;
+    relationship: one_to_one
+  }
+
   join:test_properties  {
     type: left_outer
     sql_on: ${test_properties.user_id} = ${event_info.user_id}
