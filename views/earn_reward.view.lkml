@@ -1,7 +1,7 @@
-view: coin_spend {
+view: earn_reward {
   derived_table: {
     sql:
---coin_spend
+--earn_reward
 SELECT
 user_id as user_id,
 min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
@@ -11,13 +11,15 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collecti
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'amount') as integer) as amount,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'new_amount') as integer) as new_amount,
+(SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'reward') as reward,
+cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'value') as integer) as value,
 (SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'info') as info,
 FROM `big-blast.analytics_270556009.events_*`
-where event_name='coin_spend';;
+where event_name = 'earn_reward';;
 
   }
+
+
   dimension: user_id {
     type: string
     primary_key: yes
@@ -63,27 +65,20 @@ where event_name='coin_spend';;
     hidden: yes
   }
 
-  dimension: coin_spend_amount {
-    type: number
-    sql:  ${TABLE}.amount ;;
+  dimension: reward {
+    type: string
+    sql:  ${TABLE}.reward ;;
   }
 
-  dimension: new_coin_amount {
+  dimension: value {
     type: number
-    sql:  ${TABLE}.new_amount ;;
+    sql:  ${TABLE}.value ;;
   }
 
-  dimension: coin_spend_info {
+  dimension: info {
     type: string
     sql:  ${TABLE}.info ;;
   }
-
-
-
-
-
-
-
 
 
 

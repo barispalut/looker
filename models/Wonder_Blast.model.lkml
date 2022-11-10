@@ -104,6 +104,13 @@ join:stage_end_event_1 {
     relationship: one_to_one
   }
 
+  join:earn_reward {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${earn_reward.time_key}
+      and ${event_info.user_id} = ${earn_reward.user_id};;
+    relationship: one_to_one
+  }
+
 join:test_properties  {
     type: left_outer
     sql_on: ${test_properties.user_id} = ${event_info.user_id}
