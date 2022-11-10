@@ -97,6 +97,13 @@ join:stage_end_event_1 {
     relationship: one_to_one
   }
 
+  join:kart_race_p1 {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${kart_race_p1.time_key}
+      and ${event_info.user_id} = ${kart_race_p1.user_id};;
+    relationship: one_to_one
+  }
+
 join:test_properties  {
     type: left_outer
     sql_on: ${test_properties.user_id} = ${event_info.user_id}
