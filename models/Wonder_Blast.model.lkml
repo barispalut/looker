@@ -132,6 +132,12 @@ join:stage_end_event_1 {
     relationship: one_to_one
   }
 
+  join:invite_p1 {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${invite_p1.time_key}
+      and ${event_info.user_id} = ${invite_p1.user_id};;
+    relationship: one_to_one
+  }
 
 join:test_properties  {
     type: left_outer
