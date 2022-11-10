@@ -83,6 +83,13 @@ join:stage_end_event_1 {
     relationship: one_to_one
   }
 
+  join:coin_spend {
+    type: left_outer
+    sql_on: ${event_info.time_key} = ${coin_spend.time_key}
+      and ${event_info.user_id} = ${coin_spend.user_id};;
+    relationship: one_to_one
+  }
+
 join:test_properties  {
     type: left_outer
     sql_on: ${test_properties.user_id} = ${event_info.user_id}
