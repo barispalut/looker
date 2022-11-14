@@ -17,6 +17,7 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'final_bo
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'zero_damage_percentage') as numeric) as zero_damage_percentage,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'shuffle_count') as integer) as shuffle_count,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'disco_merges') as integer) as disco_merges,
+row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) order by TIMESTAMP_MICROS(event_timestamp) desc) as Last_to_First,
 FROM `big-blast.analytics_270556009.events_*`
 where event_name='Level_End_P4';;
 
@@ -97,7 +98,10 @@ where event_name='Level_End_P4';;
     sql:  ${TABLE}.disco_merges ;;
   }
 
-
+  dimension: Last_to_First {
+    type: number
+    sql:  ${TABLE}.Last_to_First ;;
+  }
 
 
 }
