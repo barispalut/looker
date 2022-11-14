@@ -97,7 +97,7 @@ and event_name in ('Aztec_Begin_Event','Aztec_End_Event','Aztec_Launch_Event','L
   dimension_group: Next_Event_Time {
     type: time
     timeframes: [date,month,week,time]
-    sql: lead(${TABLE}.event_time) over (partition by ${user_id} order by ${TABLE}.event_time)
+    sql:  case when lead(${TABLE}.event_time) over (partition by ${user_id} order by ${TABLE}.event_time) is not null then lead(${TABLE}.event_time) over (partition by ${user_id} order by ${TABLE}.event_time) else current_timestamp() end
       ;;
   }
 
