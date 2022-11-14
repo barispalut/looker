@@ -7,10 +7,34 @@ view: test_properties {
     TIMESTAMP_MICROS(event_timestamp) as event_time,
     cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
     event_name,
-    cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) as test_63_variant,
-    cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_64') as integer) as test_64_variant,
-    cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_65') as integer) as test_65_variant,
+    63 as test_name,
+    cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) as variant,
     FROM `big-blast.analytics_270556009.events_*`
+    where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) is not null
+
+    union distinct
+
+    SELECT
+    user_id as user_id,
+    TIMESTAMP_MICROS(event_timestamp) as event_time,
+    cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
+    event_name,
+    64 as test_name,
+    cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_64') as integer) as variant,
+    FROM `big-blast.analytics_270556009.events_*`
+    where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_64') as integer) is not null
+
+    union distinct
+
+    SELECT
+    user_id as user_id,
+    TIMESTAMP_MICROS(event_timestamp) as event_time,
+    cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
+    event_name,
+    65 as test_name,
+    cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_65') as integer) as variant,
+    FROM `big-blast.analytics_270556009.events_*`
+    where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_65') as integer) is not null
     ;;
   }
 
@@ -36,19 +60,18 @@ view: test_properties {
   }
 
 
-  dimension: test_63_variant {
+  dimension: test_name {
     type: number
-    sql:  ${TABLE}.test_63_variant ;;
+    sql:  ${TABLE}.test_name ;;
   }
 
-  dimension: test_64_variant {
+  dimension: variant {
     type: number
-    sql:  ${TABLE}.test_64_variant ;;
+    sql:  ${TABLE}.variant ;;
   }
 
-  dimension: test_65_variant {
-    type: number
-    sql:  ${TABLE}.test_65_variant ;;
-  }
+
+
+
 
 }
