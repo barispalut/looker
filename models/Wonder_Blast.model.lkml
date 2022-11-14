@@ -30,14 +30,16 @@ join:level_start_p1  {
 join:level_end_p1  {
   type: left_outer
   sql_on: ${event_info.time_key} = ${level_end_p1.time_key}
-      and ${event_info.user_id} = ${level_end_p1.user_id};;
+      and ${event_info.user_id} = ${level_end_p1.user_id}
+      ;;
   relationship: one_to_one
 }
 
 join:level_end_p2  {
     type: left_outer
     sql_on: ${event_info.time_key} = ${level_end_p2.time_key}
-      and ${event_info.user_id} = ${level_end_p2.user_id};;
+      and ${event_info.user_id} = ${level_end_p2.user_id}
+      ;;
     relationship: one_to_one
   }
 

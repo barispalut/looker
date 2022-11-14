@@ -121,7 +121,7 @@ view: deneme1{
         cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_lifetime') as integer) as retry_count_lifetime,
         (row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer),app_info.version
         order by TIMESTAMP_MICROS(event_timestamp))) -1 as Retry_Count,
-        row_number() over (partition by user_pseudo_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer),app_info.version
+        row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer),app_info.version
         order by TIMESTAMP_MICROS(event_timestamp) desc) as Last_to_First,
         platform,
         app_info.version,
