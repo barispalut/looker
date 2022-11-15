@@ -107,6 +107,15 @@ and event_name in ('Aztec_Begin_Event','Aztec_End_Event','Aztec_Launch_Event','L
 
   }
 
+  dimension: Day {
+    type: number
+    sql:  date_diff(${TABLE}.event_time,${TABLE}.install_date,day) ;;
+  }
+
+  dimension: Day_Since_Install {
+    type: number
+    sql:  date_diff(current_timestamp(),${TABLE}.install_date,day) ;;
+  }
 
 
 
