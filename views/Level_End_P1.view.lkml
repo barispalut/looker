@@ -15,7 +15,6 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'win') as
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_session') as integer) as  retry_count_session,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'play_time') as numeric) as  play_time,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'in_air_merge') as integer) as in_air_merge,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'charger_fill') as numeric) as charger_fill,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiA_created') as integer) as ultiA_created,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiB_created') as integer) as ultiB_created,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiC_created') as integer) as ultiC_created,
@@ -99,10 +98,6 @@ and event_name='Level_End_P1' ;;
     sql:  ${TABLE}.in_air_merge ;;
   }
 
-  dimension: charger_fill {
-    type: number
-    sql:  ${TABLE}.charger_fill ;;
-  }
 
   dimension: ultiA_created {
     type: number
