@@ -14,7 +14,6 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'win') as integer) as win,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_session') as integer) as  retry_count_session,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'play_time') as numeric) as  play_time,
-safe_cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'charger_fill') as numeric) as charger_fill,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'in_air_merge') as integer) as in_air_merge,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiA_created') as integer) as ultiA_created,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiB_created') as integer) as ultiB_created,
