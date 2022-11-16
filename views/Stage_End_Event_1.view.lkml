@@ -2,7 +2,7 @@ view: stage_end_event_1 {
   derived_table: {
     sql:
 --Stage_End_Event_1
-SELECT distinct
+SELECT
 user_id as user_id,
 min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
 TIMESTAMP_MICROS(event_timestamp) as event_time,

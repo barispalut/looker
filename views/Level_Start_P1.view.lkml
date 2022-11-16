@@ -2,18 +2,19 @@ view: level_start_p1 {
   derived_table: {
     sql:
 --Level_Start_P1
-SELECT distinct
+SELECT
 user_id as user_id,
 min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
 TIMESTAMP_MICROS(event_timestamp) as event_time,
 cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
+cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer)+1 as level_retry_count,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
 (SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_guid') as level_guid,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'remaining_star') as integer) as  remaining_star,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'remaining_coin') as integer) as  remaining_coin,
+row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) order by TIMESTAMP_MICROS(event_timestamp) desc) as Last_to_First,
 cast(app_info.version as integer) as app_version
 FROM `big-blast.analytics_270556009.events_*`
 where 1=1
@@ -58,10 +59,9 @@ and event_name='Level_Start_P1'
     hidden: yes
   }
 
-  dimension: level_retry_count {
+  dimension: Try_Count {
     type: number
     sql:  ${TABLE}.level_retry_count ;;
-    hidden: yes
   }
 
 
@@ -86,6 +86,11 @@ and event_name='Level_Start_P1'
     type: string
     sql:  ${TABLE}.time_key ;;
     hidden: yes
+  }
+
+  dimension: Last_to_First {
+    type: number
+    sql:  ${TABLE}.Last_to_First ;;
   }
 
 

@@ -2,7 +2,7 @@ view: level_end_p1 {
   derived_table: {
     sql:
 --Level_End_P1
-SELECT distinct
+SELECT
 user_id as user_id,
 min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
 TIMESTAMP_MICROS(event_timestamp) as event_time,
@@ -24,8 +24,6 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiC_by
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiA_remaining') as integer) as ultiA_remaining,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiB_remaining') as integer) as ultiB_remaining,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiC_remaining') as integer) as ultiC_remaining,
-(row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) order by TIMESTAMP_MICROS(event_timestamp))) as Try_Count,
-row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) order by TIMESTAMP_MICROS(event_timestamp) desc) as Last_to_First,
 cast(app_info.version as integer) as app_version
 FROM `big-blast.analytics_270556009.events_*`
 where 1=1
@@ -142,11 +140,6 @@ and event_name='Level_End_P1' ;;
   dimension: ultiC_remaining {
     type: number
     sql:  ${TABLE}.ultiC_remaining ;;
-  }
-
-  dimension: Try_Count {
-    type: number
-    sql:  ${TABLE}.Try_Count ;;
   }
 
   dimension: Last_to_First {
