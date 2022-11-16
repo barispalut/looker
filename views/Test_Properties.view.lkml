@@ -12,7 +12,7 @@ select distinct user_id, event_time, time_key, event_name, test_name, variant fr
       event_name,
       63 as test_name,
       cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) as variant,
-      min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) over (partition by user_id) as min_level,
+      first_value(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) ignore nulls) over (partition by user_id order by TIMESTAMP_MICROS(event_timestamp)) as min_level,
       count (distinct(cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer))) over (partition by user_id) as variant_count
       FROM `big-blast.analytics_270556009.events_*`
       where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_63') as integer) is not null
@@ -26,7 +26,7 @@ select distinct user_id, event_time, time_key, event_name, test_name, variant fr
       event_name,
       64 as test_name,
       cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_64') as integer) as variant,
-      min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) over (partition by user_id) as min_level,
+      first_value(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) ignore nulls) over (partition by user_id order by TIMESTAMP_MICROS(event_timestamp)) as min_level,
       count (distinct(cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_64') as integer))) over (partition by user_id) as variant_count
       FROM `big-blast.analytics_270556009.events_*`
       where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_64') as integer) is not null
@@ -40,7 +40,7 @@ select distinct user_id, event_time, time_key, event_name, test_name, variant fr
       event_name,
       65 as test_name,
       cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_65') as integer) as variant,
-      min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) over (partition by user_id) as min_level,
+      first_value(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) ignore nulls) over (partition by user_id order by TIMESTAMP_MICROS(event_timestamp)) as min_level,
       count (distinct(cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_65') as integer))) over (partition by user_id) as variant_count
       FROM `big-blast.analytics_270556009.events_*`
       where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_65') as integer) is not null
@@ -54,7 +54,7 @@ select distinct user_id, event_time, time_key, event_name, test_name, variant fr
       event_name,
       66 as test_name,
       cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_66') as integer) as variant,
-      min(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer)) over (partition by user_id) as min_level,
+      first_value(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) ignore nulls) over (partition by user_id order by TIMESTAMP_MICROS(event_timestamp)) as min_level,
       count (distinct(cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_66') as integer))) over (partition by user_id) as variant_count
       FROM `big-blast.analytics_270556009.events_*`
       where cast((SELECT value.string_value FROM UNNEST(user_properties) WHERE key = 'firebase_exp_66') as integer) is not null
