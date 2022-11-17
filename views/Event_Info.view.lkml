@@ -32,7 +32,6 @@ and event_name in ('Aztec_Begin_Event','Aztec_End_Event','Aztec_Launch_Event','L
 
   dimension: user_id {
     type: string
-    primary_key: yes
     sql: ${TABLE}.user_id
       ;;
   }
@@ -93,6 +92,7 @@ and event_name in ('Aztec_Begin_Event','Aztec_End_Event','Aztec_Launch_Event','L
 
   dimension: time_key {
     type: string
+    primary_key: yes
     sql:  ${TABLE}.time_key ;;
     hidden: yes
   }

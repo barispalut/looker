@@ -73,9 +73,7 @@ and min_level <= 1 or min_level is null
 
   dimension: user_id {
     type: string
-    primary_key: yes
-    sql: ${TABLE}.user_id
-      ;;
+    sql: ${TABLE}.user_id;;
     hidden: yes
   }
 
@@ -88,6 +86,7 @@ and min_level <= 1 or min_level is null
 
   dimension: time_key {
     type: string
+    primary_key: yes
     sql:  ${TABLE}.time_key ;;
     hidden: yes
   }

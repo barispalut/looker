@@ -25,9 +25,7 @@ where event_name='Level_End_P4';;
 
   dimension: user_id {
     type: string
-    primary_key: yes
-    sql: ${TABLE}.user_id
-      ;;
+    sql: ${TABLE}.user_id ;;
     hidden: yes
   }
 
@@ -64,6 +62,7 @@ where event_name='Level_End_P4';;
 
   dimension: time_key {
     type: string
+    primary_key: yes
     sql:  ${TABLE}.time_key ;;
     hidden: yes
   }

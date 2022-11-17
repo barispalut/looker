@@ -22,9 +22,7 @@ where event_name = 'earn_reward';;
 
   dimension: user_id {
     type: string
-    primary_key: yes
-    sql: ${TABLE}.user_id
-      ;;
+    sql: ${TABLE}.user_id ;;
     hidden: yes
   }
 
@@ -61,6 +59,7 @@ where event_name = 'earn_reward';;
 
   dimension: time_key {
     type: string
+    primary_key: yes
     sql:  ${TABLE}.time_key ;;
     hidden: yes
   }

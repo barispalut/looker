@@ -25,12 +25,9 @@ and event_name='Level_Start_P1'
 
   dimension: user_id {
     type: string
-    primary_key: yes
-    sql: ${TABLE}.user_id
-      ;;
+    sql: ${TABLE}.user_id ;;
     hidden: yes
   }
-
 
   dimension_group: Event_Time {
     type: time
@@ -45,13 +42,11 @@ and event_name='Level_Start_P1'
     hidden: yes
   }
 
-
   dimension: collection_id {
     type: number
     sql:  ${TABLE}.collection_id ;;
     hidden: yes
   }
-
 
   dimension: level_id {
     type: number
@@ -59,6 +54,18 @@ and event_name='Level_Start_P1'
     hidden: yes
   }
 
+  dimension: level_retry_count {
+    type: number
+    sql:  ${TABLE}.level_retry_count ;;
+    hidden: yes
+  }
+
+  dimension: time_key {
+    type: string
+    primary_key: yes
+    sql:  ${TABLE}.time_key ;;
+    hidden: yes
+  }
   dimension: Try_Count {
     type: number
     sql:  ${TABLE}.level_retry_count ;;
@@ -82,11 +89,6 @@ and event_name='Level_Start_P1'
     sql:  ${TABLE}.remaining_coin ;;
   }
 
-  dimension: time_key {
-    type: string
-    sql:  ${TABLE}.time_key ;;
-    hidden: yes
-  }
 
   dimension: Last_to_First {
     type: number
