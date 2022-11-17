@@ -78,7 +78,7 @@ and event_name in ('Aztec_Begin_Event','Aztec_End_Event','Aztec_Launch_Event','L
 
   dimension: app_verison {
     type: number
-    sql:  ${TABLE}.app_verison ;;
+    sql:  ${TABLE}.app_version ;;
   }
 
 
