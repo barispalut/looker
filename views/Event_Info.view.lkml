@@ -13,16 +13,13 @@ TIMESTAMP_MICROS(event_timestamp) as event_time,
 cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
 event_name,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
+safe_cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
 safe_cast(app_info.version as integer) as app_version,
 geo.country as country
 FROM `big-blast.analytics_270556009.events_*`
-where 1=1
-and event_name in ('Aztec_Begin_Event','Aztec_End_Event','Aztec_Launch_Event','Level_End_P1','Level_End_P2','Level_End_P3','Level_End_P4','Level_Start_P1','Stage_End_Event_1','building_p1',
-'coin_earn','coin_spend','earn_reward','gem_earn','iap_p1','insufficient_funds','invite_p1','kart_race_p1','loading_continue','ma_p1','network_persistent_fail','network_request','network_request_time_out',
-'network_retry_success','process_profiler','star_earn','star_spend','teams_p1','user_session_start','wilsons_fair_event_entry_event','wilsons_fair_homepage_icon_click_event','wilsons_fair_homepage_stage_event','wilsons_fair_reward_event')
+
 )
       ;;
 
