@@ -4,6 +4,7 @@ view: event_info {
 --Event_Info
 select user_id, install_date, event_time, time_key, event_name, collection_id,level_id,level_retry_count,session_id,app_version,country,
 case when lead(event_time) over (partition by user_id order by event_time) is null then current_timestamp() else lead(event_time) over (partition by user_id order by event_time) end as next_event_time,
+count(distinct session_id) over (partition by user_id, date_diff(event_time, install_date,day)) as session_count_per_day
 from
 (
 SELECT distinct
@@ -117,7 +118,10 @@ FROM `big-blast.analytics_270556009.events_*`
     sql:  date_diff(current_timestamp(),${TABLE}.install_date,day) ;;
   }
 
-
+  dimension: session_count_per_day {
+    type: number
+    sql:  ${TABLE}.session_count_per_day ;;
+  }
 
 
 
