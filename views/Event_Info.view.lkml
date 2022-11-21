@@ -16,7 +16,8 @@ country,
 case when lead(event_time) over (partition by user_id order by event_time) is null then current_timestamp() else lead(event_time) over (partition by user_id order by event_time) end as next_event_time,
 count(distinct session_id) over (partition by user_id, date_diff(event_time, install_date,day)) as session_count_per_day,
 row_number() over (partition by user_id, date_diff(event_time, install_date,day) order by event_time desc) as Last_to_First_Day,
-sum(win) over (partition by user_id order by event_time) as Level_Progress
+sum(win) over (partition by user_id order by event_time) as Level_Progress,
+case when event_name = "session_start" then 1 else null end as session_count
 from
 (
 SELECT distinct
@@ -145,7 +146,10 @@ FROM `big-blast.analytics_270556009.events_*`
     sql:  ${TABLE}.Level_Progress ;;
   }
 
-
+  dimension: session_count {
+    type: number
+    sql:  ${TABLE}.session_count ;;
+  }
 
 
 
