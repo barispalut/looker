@@ -2,9 +2,21 @@ view: event_info {
   derived_table: {
     sql:
 --Event_Info
-select user_id, install_date, event_time, time_key, event_name, collection_id,level_id,level_retry_count,session_id,app_version,country,
+select user_id,
+install_date,
+event_time,
+time_key,
+event_name,
+collection_id,
+level_id,
+level_retry_count,
+session_id,
+app_version,
+country,
 case when lead(event_time) over (partition by user_id order by event_time) is null then current_timestamp() else lead(event_time) over (partition by user_id order by event_time) end as next_event_time,
-count(distinct session_id) over (partition by user_id, date_diff(event_time, install_date,day)) as session_count_per_day
+count(distinct session_id) over (partition by user_id, date_diff(event_time, install_date,day)) as session_count_per_day,
+row_number() over (partition by user_id, date_diff(event_time, install_date,day) order by event_time desc) as Last_to_First_Day,
+sum(win) over (partition by user_id order by event_time) as Level_Progress
 from
 (
 SELECT distinct
@@ -17,10 +29,10 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collecti
 safe_cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
+case when event_name = "Level_End_P2" then cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'win') as integer) else null end as win,
 safe_cast(app_info.version as integer) as app_version,
 geo.country as country
 FROM `big-blast.analytics_270556009.events_*`
-
 )
       ;;
 
@@ -123,8 +135,15 @@ FROM `big-blast.analytics_270556009.events_*`
     sql:  ${TABLE}.session_count_per_day ;;
   }
 
+  dimension: Last_to_First_Day {
+    type: number
+    sql:  ${TABLE}.Last_to_First_Day ;;
+  }
 
-
+  dimension: Level_Progress {
+    type: number
+    sql:  ${TABLE}.Level_Progress ;;
+  }
 
 
 
