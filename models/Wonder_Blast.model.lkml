@@ -22,129 +22,56 @@ explore: event_info {
 
 join:level_start_p1  {
   type: left_outer
-  sql_on: ${event_info.time_key} = ${level_start_p1.time_key}
-      and ${event_info.user_id}=${level_start_p1.user_id} ;;
+  sql_on: ${event_info.event_key} = ${level_start_p1.event_key} ;;
   relationship: one_to_many
 }
 
 join:level_end_p1  {
   type: left_outer
-  sql_on: ${event_info.time_key} = ${level_end_p1.time_key}
-      and ${event_info.user_id} = ${level_end_p1.user_id}
-      ;;
+  sql_on: ${event_info.event_key} = ${level_end_p1.event_key} ;;
   relationship: one_to_many
 }
 
 join:level_end_p2  {
     type: left_outer
-    sql_on: ${event_info.time_key} = ${level_end_p2.time_key}
-      and ${event_info.user_id} = ${level_end_p2.user_id}
-      ;;
+    sql_on: ${event_info.event_key} = ${level_end_p2.event_key} ;;
     relationship: one_to_many
   }
 
 join:level_end_p3  {
     type: left_outer
-    sql_on: ${event_info.time_key} = ${level_end_p3.time_key}
-      and ${event_info.user_id} = ${level_end_p3.user_id};;
+    sql_on: ${event_info.event_key} = ${level_end_p3.event_key} ;;
     relationship: one_to_many
   }
 
 join:level_end_p4  {
     type: left_outer
-    sql_on: ${event_info.time_key} = ${level_end_p4.time_key}
-      and ${event_info.user_id} = ${level_end_p4.user_id};;
+    sql_on: ${event_info.event_key} = ${level_end_p4.event_key} ;;
     relationship: one_to_many
   }
 
-join:stage_end_event_1 {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${stage_end_event_1.time_key}
-      and ${event_info.user_id} = ${stage_end_event_1.user_id};;
-    relationship: one_to_many
-  }
-
-  join:building_p1 {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${building_p1.time_key}
-      and ${event_info.user_id} = ${building_p1.user_id};;
-    relationship: one_to_many
-  }
 
   join:iap_p1 {
     type: left_outer
-    sql_on: ${event_info.time_key} = ${iap_p1.time_key}
-      and ${event_info.user_id} = ${iap_p1.user_id};;
+    sql_on: ${event_info.event_key} = ${iap_p1.event_key} ;;
     relationship: one_to_many
   }
 
   join:coin_earn {
     type: left_outer
-    sql_on: ${event_info.time_key} = ${coin_earn.time_key}
-      and ${event_info.user_id} = ${coin_earn.user_id};;
+    sql_on: ${event_info.event_key} = ${coin_earn.event_key} ;;
     relationship: one_to_many
   }
 
   join:coin_spend {
     type: left_outer
-    sql_on: ${event_info.time_key} = ${coin_spend.time_key}
-      and ${event_info.user_id} = ${coin_spend.user_id};;
-    relationship: one_to_many
-  }
-
-  join:wilsons_fair_homepage_stage_event {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${wilsons_fair_homepage_stage_event.time_key}
-      and ${event_info.user_id} = ${wilsons_fair_homepage_stage_event.user_id};;
-    relationship: one_to_many
-  }
-
-  join:kart_race_p1 {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${kart_race_p1.time_key}
-      and ${event_info.user_id} = ${kart_race_p1.user_id};;
-    relationship: one_to_many
-  }
-
-  join:earn_reward {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${earn_reward.time_key}
-      and ${event_info.user_id} = ${earn_reward.user_id};;
-    relationship: one_to_many
-  }
-
-  join:aztec_launch_event {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${aztec_launch_event.time_key}
-      and ${event_info.user_id} = ${aztec_launch_event.user_id};;
-    relationship: one_to_many
-  }
-
-  join:aztec_begin_event {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${aztec_begin_event.time_key}
-      and ${event_info.user_id} = ${aztec_begin_event.user_id};;
-    relationship: one_to_many
-  }
-
-  join:aztec_end_event {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${aztec_end_event.time_key}
-      and ${event_info.user_id} = ${aztec_end_event.user_id};;
-    relationship: one_to_many
-  }
-
-  join:invite_p1 {
-    type: left_outer
-    sql_on: ${event_info.time_key} = ${invite_p1.time_key}
-      and ${event_info.user_id} = ${invite_p1.user_id};;
+    sql_on: ${event_info.event_key} = ${coin_spend.event_key} ;;
     relationship: one_to_many
   }
 
 join:test_properties  {
     type: left_outer
-    sql_on: ${test_properties.user_id} = ${event_info.user_id}
-      and ${test_properties.time_key} = ${event_info.time_key};;
+    sql_on: ${event_info.event_key} = ${test_properties.event_key} ;;
     relationship: one_to_many
   }
 
