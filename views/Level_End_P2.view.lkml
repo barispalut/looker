@@ -14,8 +14,6 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'win') as integer) as win,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_id') as integer) as stage_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_count') as integer) as stage_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_session') as integer) as retry_count_session,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_lifetime') as integer) as retry_count_lifetime,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'remaining_coin') as integer) as remaining_coin,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'remaining_lives') as integer) as remaining_lives,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'plus5_used') as integer) as plus5_used,
@@ -94,15 +92,6 @@ where event_name='Level_End_P2';;
     sql:  ${TABLE}.stage_count ;;
   }
 
-  dimension: retry_count_session {
-    type: number
-    sql:  ${TABLE}.retry_count_session ;;
-  }
-
-  dimension: retry_count_lifetime {
-    type: number
-    sql:  ${TABLE}.retry_count_lifetime ;;
-  }
 
   dimension: remaining_coin {
     type: number

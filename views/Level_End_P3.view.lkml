@@ -23,8 +23,6 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'b3_inven
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'pb1_inventory') as integer) as pb1_inventory,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'pb2_inventory') as integer) as pb2_inventory,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'pb3_inventory') as integer) as pb3_inventory,
-safe_cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ww_stage') as integer) as ww_stage,
-(SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ww_reward_earned') as ww_reward_earned,
 row_number() over (partition by user_id, cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer),cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) order by TIMESTAMP_MICROS(event_timestamp) desc) as Last_to_First,
 FROM `big-blast.analytics_270556009.events_*`
 where event_name='Level_End_P3';;
@@ -135,15 +133,6 @@ where event_name='Level_End_P3';;
     sql:  ${TABLE}.pb3_inventory ;;
   }
 
-  dimension: ww_stage {
-    type: number
-    sql:  ${TABLE}.ww_stage ;;
-  }
-
-  dimension: ww_reward_earned {
-    type: string
-    sql:  ${TABLE}.ww_reward_earned ;;
-  }
 
   dimension: Last_to_First {
     type: number

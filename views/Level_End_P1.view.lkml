@@ -12,9 +12,7 @@ cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'win') as integer) as win,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'retry_count_session') as integer) as  retry_count_session,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'play_time') as numeric) as  play_time,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'in_air_merge') as integer) as in_air_merge,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiA_created') as integer) as ultiA_created,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiB_created') as integer) as ultiB_created,
 cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'ultiC_created') as integer) as ultiC_created,
@@ -80,19 +78,10 @@ and event_name='Level_End_P1' ;;
     sql:  ${TABLE}.win ;;
   }
 
-  dimension: retry_count_session {
-    type: number
-    sql:  ${TABLE}.retry_count_session ;;
-  }
 
   dimension: play_time {
     type: number
     sql:  ${TABLE}.play_time ;;
-  }
-
-  dimension: in_air_merge {
-    type: number
-    sql:  ${TABLE}.in_air_merge ;;
   }
 
 
