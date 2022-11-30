@@ -67,6 +67,12 @@ view: level_start_p1 {
     sql:  ${TABLE}.remaining_coin ;;
   }
 
+  dimension: Level_Churn{
+    type: string
+    sql:  case when date_diff (${TABLE}.next_event_time, ${TABLE}.event_time, hour) >= 72 then "C" else null end  ;;
+
+  }
+
 
   dimension: Last_to_First {
     type: number
