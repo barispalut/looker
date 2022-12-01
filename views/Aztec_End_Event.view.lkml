@@ -1,36 +1,5 @@
 view: aztec_end_event {
-  derived_table: {
-    sql:
---Aztec_End_Event
-SELECT
-user_id as user_id,
-min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
-TIMESTAMP_MICROS(event_timestamp) as event_time,
-cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
-timestamp_millis(cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'launch_time_stamp') as integer)) as launch_time_stamp,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'claimed') as integer) as claimed,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'continue_count') as integer) as continue_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage') as integer) as stage,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'mask_count') as integer) as mask_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'quit_pop_up_impressions') as integer) as quit_pop_up_impressions,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'total_coin_spent') as integer) as total_coin_spent,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'iap_total') as numeric) as iap_total,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_coin') as integer) as r_coin,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_pb2') as integer) as r_pb2,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_eb1_timed') as integer) as r_eb1_timed,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_lives_timed') as integer) as r_lives_timed,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_pb1_timed') as integer) as r_pb1_timed,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_eb2') as integer) as r_eb2,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'r_pb3') as integer) as r_pb3,
-cast(app_info.version as integer) as app_version
-FROM `big-blast.analytics_270556009.events_*`
-where event_name = 'Aztec_End_Event';;
-
-  }
+  sql_table_name: `big-blast.analytics_270556009.Aztec_End_Event_view` ;;
 
   dimension: user_id {
     type: string
@@ -63,16 +32,16 @@ where event_name = 'Aztec_End_Event';;
     hidden: yes
   }
 
-  dimension: level_retry_count {
+  dimension: try_count {
     type: number
-    sql:  ${TABLE}.level_retry_count ;;
+    sql:  ${TABLE}.try_count ;;
     hidden: yes
   }
 
-  dimension: time_key {
+  dimension: event_key {
     type: string
     primary_key: yes
-    sql:  ${TABLE}.time_key ;;
+    sql:  ${TABLE}.event_key ;;
     hidden: yes
   }
 

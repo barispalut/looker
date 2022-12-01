@@ -1,30 +1,5 @@
 view: stage_end_event_1 {
-  derived_table: {
-    sql:
---Stage_End_Event_1
-SELECT
-user_id as user_id,
-min(TIMESTAMP_MICROS (user_first_touch_timestamp)) over (partition by user_id) as install_date,
-TIMESTAMP_MICROS(event_timestamp) as event_time,
-cast(TIMESTAMP_MICROS(event_timestamp) as string) as time_key,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'collection_id') as integer) as collection_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_id') as integer) as level_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_retry_count') as integer) as level_retry_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'session_id') as integer) as session_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_id') as integer) as stage_id,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_move_count') as integer) as stage_move_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'start_move_count') as integer) as start_move_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_win') as integer) as stage_win,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'level_start_move_count') as integer) as level_start_move_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_rem_move_count') as integer) as stage_rem_move_count,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_duration') as numeric) as stage_duration,
-cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'stage_count') as integer) as stage_count,
-safe_cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'overall_point') as numeric) as overall_point,
-safe_cast((SELECT value.string_value FROM UNNEST (event_params) WHERE key = 'bpm') as numeric) as bpm,
-FROM `big-blast.analytics_270556009.events_*`
-where event_name='Stage_End_Event_1';;
-
-  }
+  sql_table_name: `big-blast.analytics_270556009.Stage_End_Event_1_view` ;;
 
 
   dimension: user_id {
@@ -58,16 +33,16 @@ where event_name='Stage_End_Event_1';;
     hidden: yes
   }
 
-  dimension: level_retry_count {
+  dimension: try_count {
     type: number
-    sql:  ${TABLE}.level_retry_count ;;
+    sql:  ${TABLE}.try_count ;;
     hidden: yes
   }
 
-  dimension: time_key {
+  dimension: event_key {
     type: string
     primary_key: yes
-    sql:  ${TABLE}.time_key ;;
+    sql:  ${TABLE}.event_key ;;
     hidden: yes
   }
 
@@ -88,7 +63,7 @@ where event_name='Stage_End_Event_1';;
 
   dimension: stage_win {
     type: number
-    sql:  ${TABLE}.stage_win ;;
+    sql:  ${TABLE}.win ;;
   }
 
   dimension: level_start_move_count {
