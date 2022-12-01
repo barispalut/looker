@@ -50,6 +50,11 @@ join:level_end_p4  {
     relationship: one_to_many
   }
 
+  join:stage_end_event_1 {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${stage_end_event_1.event_key} ;;
+    relationship: one_to_many
+  }
 
   join:iap_p1 {
     type: left_outer
@@ -74,5 +79,43 @@ join:test_properties  {
     sql_on: ${event_info.event_key} = ${test_properties.event_key} ;;
     relationship: one_to_many
   }
+
+  join:building_p1  {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${building_p1.event_key} ;;
+    relationship: one_to_many
+  }
+
+  join:earn_reward  {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${earn_reward.event_key} ;;
+    relationship: one_to_many
+  }
+
+  join:invite_p1  {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${invite_p1.event_key} ;;
+    relationship: one_to_many
+  }
+
+  join:aztec_launch_event  {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${aztec_launch_event.event_key} ;;
+    relationship: one_to_many
+  }
+
+  join:aztec_begin_event  {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${aztec_begin_event.event_key} ;;
+    relationship: one_to_many
+  }
+
+  join:aztec_end_event {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${aztec_end_event.event_key} ;;
+    relationship: one_to_many
+  }
+
+
 
 }
