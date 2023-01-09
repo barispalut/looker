@@ -56,6 +56,17 @@ view: level_start_p1 {
   }
 
 
+  dimension: streak_stage {
+    type: number
+    sql:  ${TABLE}.streak ;;
+  }
+
+  dimension: age_stage {
+    type: number
+    sql:  ${TABLE}.age_stage ;;
+  }
+
+
 
   dimension: remaining_star {
     type: number
@@ -66,6 +77,42 @@ view: level_start_p1 {
     type: number
     sql:  ${TABLE}.remaining_coin ;;
   }
+
+  dimension: b1_inventory {
+    type: number
+    sql:  ${TABLE}.b1_inventory ;;
+  }
+
+
+  dimension: b2_inventory {
+    type: number
+    sql:  ${TABLE}.b2_inventory ;;
+  }
+
+
+  dimension: b3_inventory {
+    type: number
+    sql:  ${TABLE}.b3_inventory ;;
+  }
+
+  dimension: pb1_inventory {
+    type: number
+    sql:  ${TABLE}.pb1_inventory ;;
+  }
+
+
+  dimension: pb2_inventory {
+    type: number
+    sql:  ${TABLE}.pb2_inventory ;;
+  }
+
+
+  dimension: pb3_inventory {
+    type: number
+    sql:  ${TABLE}.pb3_inventory ;;
+  }
+
+
 
   dimension: Level_Churn{
     type: string
