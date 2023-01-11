@@ -30,7 +30,7 @@ view: event_info {
 
   dimension: session_id {
     type: number
-    sql:  ${TABLE}.session_id ;;
+    sql:  case when ${TABLE}.session_id = -1 then 0 else ${TABLE}.session_id end;;
   }
 
 
