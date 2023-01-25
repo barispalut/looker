@@ -99,6 +99,11 @@ view: event_info {
   }
 
 
+  dimension: Current_Level_Progress {
+    type: number
+    sql:  ${TABLE}.Current_Level_Progress ;;
+  }
+
 
 
 }
