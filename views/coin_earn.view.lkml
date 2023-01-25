@@ -62,7 +62,7 @@ view: coin_earn {
                when ${TABLE}.info in ("8000","8001","8002") then "Copter Craze"
                when ${TABLE}.info in ("9000","9001","9002") then "Move Hunt"
                when ${TABLE}.info in ("40","Level Win") then "Level Win"
-               when ${TABLE}.info in ("10") then "IAP" else "Other Sources"
+               when ${TABLE}.info in ("10") then "IAP" else "Other Sources" end
               ;;
   }
 
