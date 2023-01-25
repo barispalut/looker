@@ -33,6 +33,15 @@ view: event_info {
     sql:  case when ${TABLE}.session_id = -1 then 0 else ${TABLE}.session_id end;;
   }
 
+  dimension: episode_id {
+    type: number
+    sql:  ${TABLE}.episode_id ;;
+  }
+
+  dimension: level_progress {
+    type: number
+    sql:  ${TABLE}.level_progress ;;
+  }
 
   dimension: collection_id {
     type: number
@@ -50,6 +59,15 @@ view: event_info {
     sql:  ${TABLE}.try_count ;;
   }
 
+  dimension: sum_iap_lifetime {
+    type: number
+    sql:  ${TABLE}.sum_iap_lifetime ;;
+  }
+
+  dimension: iap_count_lifetime {
+    type: number
+    sql:  ${TABLE}.iap_count_lifetime ;;
+  }
 
   dimension: app_verison {
     type: number

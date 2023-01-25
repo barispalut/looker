@@ -26,6 +26,12 @@ join:level_start_p1  {
   relationship: one_to_many
 }
 
+  join:level_start_p2  {
+    type: left_outer
+    sql_on: ${event_info.event_key} = ${level_start_p2.event_key} ;;
+    relationship: one_to_many
+  }
+
 join:level_end_p1  {
   type: left_outer
   sql_on: ${event_info.event_key} = ${level_end_p1.event_key} ;;
