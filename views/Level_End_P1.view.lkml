@@ -56,6 +56,11 @@ view: level_end_p1 {
     sql:  ${TABLE}.play_time ;;
   }
 
+  dimension: charger_fill {
+    type: number
+    sql:  ${TABLE}.charger_fill ;;
+  }
+
 
   dimension: ultiA_created {
     type: number
