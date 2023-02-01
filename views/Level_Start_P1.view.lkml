@@ -61,6 +61,11 @@ view: level_start_p1 {
     sql:  ${TABLE}.streak ;;
   }
 
+  dimension: next_streak_stage {
+    type: number
+    sql:  ${TABLE}.next_streak ;;
+  }
+
   dimension: age_stage {
     type: number
     sql:  ${TABLE}.age_stage ;;
