@@ -75,6 +75,48 @@ view: level_end_p4 {
     sql:  ${TABLE}.disco_merges ;;
   }
 
+  dimension: ultiA_exploded {
+    type: number
+    sql:  ${TABLE}.ultiA_exploded ;;
+  }
+
+  dimension: ultiB_exploded {
+    type: number
+    sql:  ${TABLE}.ultiB_exploded ;;
+  }
+
+  dimension: ultiC_exploded {
+    type: number
+    sql:  ${TABLE}.ultiC_exploded ;;
+  }
+
+
+  dimension: first_UltiA_move {
+    type: number
+    sql:  ${TABLE}.first_UltiA_move ;;
+  }
+
+
+
+  dimension: first_UltiB_move {
+    type: number
+    sql:  ${TABLE}.first_UltiB_move ;;
+  }
+
+
+  dimension: first_UltiC_move {
+    type: number
+    sql:  ${TABLE}.first_UltiC_move ;;
+  }
+
+
+  dimension: level_quit {
+    type: number
+    sql:  ${TABLE}.level_quit ;;
+  }
+
+
+
   dimension: Last_to_First {
     type: number
     sql:  ${TABLE}.Last_to_First ;;
