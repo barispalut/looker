@@ -32,7 +32,10 @@ view: test_properties {
     sql:  ${TABLE}.variant ;;
   }
 
-
+  dimension: First_Test_Level {
+    type: number
+    sql:  ${TABLE}.First_Test_Level ;;
+  }
 
 
 
