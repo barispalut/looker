@@ -122,6 +122,10 @@ view: event_info {
     sql:  ${TABLE}.Current_Level_Progress ;;
   }
 
+  dimension: level_key {
+    type: string
+    sql:  ${TABLE}.level_key ;;
+  }
 
 
 }

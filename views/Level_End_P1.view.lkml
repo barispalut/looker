@@ -112,10 +112,6 @@ view: level_end_p1 {
     sql:  ${TABLE}.Last_to_First ;;
   }
 
-  dimension: streak_stage {
-    type: number
-    sql:  ${level_start_p1.streak_stage} ;;
-  }
 
 
 
