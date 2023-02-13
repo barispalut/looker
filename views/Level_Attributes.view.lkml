@@ -2,7 +2,7 @@ view: level_attributes {
 
 
   derived_table: {
-    sql: select level_key,streak,try_count,plus5_used from   `big-blast.analytics_270556009.Level_Start_P1_view`;;
+    sql: select level_key,streak from   `big-blast.analytics_270556009.Level_Start_P1_view`;;
 
   }
 
@@ -17,14 +17,5 @@ view: level_attributes {
     sql:  ${TABLE}.streak;;
   }
 
-  dimension: try_count {
-    type: number
-    sql:  ${TABLE}.try_count;;
-  }
-
-  dimension: plus5_used {
-    type: number
-    sql:  ${TABLE}.plus5_used ;;
-  }
 
   }

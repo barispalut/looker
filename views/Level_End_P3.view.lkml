@@ -35,7 +35,7 @@ view: level_end_p3 {
   dimension: try_count {
     type: number
     sql:  ${TABLE}.try_count ;;
-    hidden: yes
+
   }
 
   dimension: event_key {
