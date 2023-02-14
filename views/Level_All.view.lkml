@@ -33,6 +33,7 @@ view: level_all {
 
   dimension: level_key {
     type: number
+    primary_key: yes
     sql:  ${TABLE}.level_key ;;
     hidden: yes
   }
