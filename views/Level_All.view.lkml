@@ -189,7 +189,7 @@ view: level_all {
 
   dimension: life_timed {
     type: number
-    sql:  ${TABLE}.pb3_timed ;;
+    sql:  ${TABLE}.life_timed ;;
   }
 
   dimension: remaining_lives {
