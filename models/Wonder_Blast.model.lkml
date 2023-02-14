@@ -128,5 +128,11 @@ join:test_properties  {
     relationship: one_to_many
   }
 
+  join:level_all {
+    type: left_outer
+    sql_on: ${event_info.level_key} = ${level_all.level_key} ;;
+    relationship: one_to_many
+  }
+
 
 }

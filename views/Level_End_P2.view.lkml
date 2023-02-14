@@ -126,6 +126,12 @@ view: level_end_p2 {
     sql:  ${TABLE}.Last_to_First ;;
   }
 
+  dimension: level_key {
+    type: string
+    sql:  ${TABLE}.level_key ;;
+    hidden: yes
+  }
+
 
 
 }

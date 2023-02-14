@@ -132,4 +132,9 @@ view: level_start_p1 {
   }
 
 
+  dimension: level_key {
+    type: string
+    sql:  ${TABLE}.level_key ;;
+    hidden: yes
+  }
 }
