@@ -139,23 +139,21 @@ join:test_properties  {
 
 explore: user_properties {
 
+  join:event_info  {
+    type: left_outer
+    sql_on: ${user_properties.user_id} = ${event_info.user_id}  ;;
+    relationship: one_to_many
+  }
+
   join:level_all  {
     type: left_outer
-    sql_on: ${user_properties.user_id} = ${level_all.user_id} ;;
-    relationship: one_to_many
+    sql_on: ${level_all.level_key_2} = ${event_info.level_key_2} ;;
+    relationship: many_to_one
   }
 
   join:iap_p1  {
     type: left_outer
-    sql_on: ${user_properties.user_id} = ${iap_p1.user_id} and ${level_all.level_key_2} = ${iap_p1.level_key} ;;
+    sql_on:  ${event_info.event_key} = ${iap_p1.event_key}  ;;
     relationship: one_to_many
   }
-
-  join:event_info  {
-    type: left_outer
-    sql_on: ${user_properties.user_id} = ${event_info.user_id} and ${level_all.event_key} = ${event_info.event_key} and ${iap_p1.event_key} = ${event_info.event_key} ;;
-    relationship: one_to_many
-  }
-
-
 }

@@ -127,5 +127,10 @@ view: event_info {
     sql:  ${TABLE}.level_key ;;
   }
 
+  dimension: level_key_2 {
+    type: string
+    sql:  ${TABLE}.level_key_2 ;;
+  }
+
 
 }
