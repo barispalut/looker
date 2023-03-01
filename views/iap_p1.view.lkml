@@ -1,5 +1,5 @@
 view: iap_p1 {
-  sql_table_name: `big-blast.analytics_270556009.iap_p1_view`  ;;
+  sql_table_name: `big-blast.analytics_270556009.iap_p1` ;;
 
   dimension: user_id {
     type: string
@@ -42,6 +42,12 @@ view: iap_p1 {
     type: string
     primary_key: yes
     sql:  ${TABLE}.event_key;;
+    hidden: yes
+  }
+
+  dimension: level_key{
+    type: string
+    sql:  ${TABLE}.level_key;;
     hidden: yes
   }
 

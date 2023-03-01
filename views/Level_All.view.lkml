@@ -32,11 +32,25 @@ view: level_all {
   }
 
   dimension: level_key {
-    type: number
+    type: string
     primary_key: yes
     sql:  ${TABLE}.level_key ;;
     hidden: yes
   }
+
+  dimension: level_key_2 {
+    type: string
+    primary_key: yes
+    sql:  ${TABLE}.level_key_2 ;;
+    hidden: yes
+  }
+
+  dimension: event_key {
+    type: string
+    sql:  ${TABLE}.event_key ;;
+    hidden: yes
+  }
+
 
   dimension: episode_id {
     type: number
