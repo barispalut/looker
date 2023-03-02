@@ -290,17 +290,17 @@ view: level {
 
   dimension: b1_used {
     type: number
-    sql:  ${TABLE}.eb1_used ;;
+    sql:  ${TABLE}.b1_used ;;
   }
 
   dimension: b2_used {
     type: number
-    sql:  ${TABLE}.eb2_used ;;
+    sql:  ${TABLE}.b2_used ;;
   }
 
   dimension: b3_used {
     type: number
-    sql:  ${TABLE}.eb3_used ;;
+    sql:  ${TABLE}.b3_used ;;
   }
 
   dimension: start_move_count {
