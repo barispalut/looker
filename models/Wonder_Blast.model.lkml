@@ -147,8 +147,8 @@ explore: user_properties {
 
   join:level  {
     type: left_outer
-    sql_on: ${level.level_key} = ${event_properties.level_key} ;;
-    relationship: one_to_many
+    sql_on:  ${event_properties.level_key} = ${level.level_key}  ;;
+    relationship: many_to_one
   }
 
   join:iap  {
