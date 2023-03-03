@@ -7,6 +7,7 @@ view: event_properties {
     type: string
     sql: ${TABLE}.user_id
       ;;
+    hidden: yes
   }
 
   dimension_group: Install_Date {
