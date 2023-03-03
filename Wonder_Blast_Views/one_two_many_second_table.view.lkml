@@ -9,7 +9,7 @@ view: one_two_many_second_table {
   }
 
   dimension: third_column {
-    type: string
+    type: number
     sql: ${TABLE}.third_column ;;
   }
 }

@@ -8,7 +8,7 @@ view: one_two_many_first_table {
   }
 
   dimension: second_column {
-    type: string
+    type: number
     primary_key: yes
     sql: ${TABLE}.second_column ;;
   }
