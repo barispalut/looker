@@ -37,32 +37,27 @@ view: event_properties {
 
   dimension: episode_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.episode_id ;;
   }
 
   dimension: level_progress {
     type: number
-    hidden: yes
     sql:  ${TABLE}.level_progress ;;
   }
 
   dimension: collection_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.collection_id ;;
   }
 
 
   dimension: level_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.level_id ;;
   }
 
-  dimension: try_count {
+  dimension: try {
     type: number
-    hidden: yes
     sql:  ${TABLE}.try_count ;;
   }
 
