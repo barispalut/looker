@@ -423,15 +423,17 @@ view: level {
     sql:  ${TABLE}.level_quit ;;
   }
 
-  dimension: app_verison {
+  dimension: app_version {
     type: number
     sql:  ${TABLE}.app_version ;;
+    hidden: yes
   }
 
 
   dimension: country {
     type: string
     sql:  ${TABLE}.country ;;
+    hidden: yes
   }
 
   dimension: Level_Churn{

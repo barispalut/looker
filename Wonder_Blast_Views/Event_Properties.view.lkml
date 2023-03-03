@@ -14,6 +14,7 @@ view: event_properties {
     timeframes: [date,month,week,time]
     sql: ${TABLE}.install_date
       ;;
+    hidden: yes
   }
 
   dimension_group: Event_Time {
@@ -74,7 +75,7 @@ view: event_properties {
     sql:  ${TABLE}.iap_count_lifetime ;;
   }
 
-  dimension: app_verison {
+  dimension: app_version {
     type: number
     sql:  ${TABLE}.app_version ;;
   }
