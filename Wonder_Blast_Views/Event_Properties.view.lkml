@@ -38,27 +38,32 @@ view: event_properties {
   dimension: episode_id {
     type: number
     sql:  ${TABLE}.episode_id ;;
+    hidden: yes
   }
 
   dimension: level_progress {
     type: number
     sql:  ${TABLE}.level_progress ;;
+    hidden: yes
   }
 
   dimension: collection_id {
     type: number
     sql:  ${TABLE}.collection_id ;;
+    hidden: yes
   }
 
 
   dimension: level_id {
     type: number
     sql:  ${TABLE}.level_id ;;
+    hidden: yes
   }
 
   dimension: try {
     type: number
     sql:  ${TABLE}.try_count ;;
+    hidden: yes
   }
 
   dimension: sum_iap_lifetime {
@@ -113,6 +118,7 @@ view: event_properties {
   dimension: level_key {
     type: string
     sql:  ${TABLE}.level_key ;;
+    hidden: yes
   }
 
 }

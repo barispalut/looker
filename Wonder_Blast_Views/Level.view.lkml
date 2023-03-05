@@ -31,7 +31,6 @@ view: level {
     type: string
     primary_key: yes
     sql:  ${TABLE}.level_key ;;
-    hidden: yes
   }
 
 
@@ -44,34 +43,29 @@ view: level {
 
   dimension: episode_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.episode_id ;;
   }
 
   dimension: level_progress {
     type: number
-    hidden: yes
     sql:  ${TABLE}.level_progress ;;
 
   }
 
   dimension: collection_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.collection_id ;;
 
   }
 
   dimension: level_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.level_id ;;
 
   }
 
   dimension: try {
     type: number
-    hidden: yes
     sql:  ${TABLE}.try ;;
 
   }
