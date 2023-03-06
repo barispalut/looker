@@ -24,6 +24,12 @@ view: user_properties {
     sql:  ${TABLE}.total_IAP_value ;;
   }
 
+
+  dimension: Day_Since_Install {
+    type: number
+    sql:  date_diff(current_timestamp(),${TABLE}.install_date,day) ;;
+  }
+
 }
 
 # view: user_properties {

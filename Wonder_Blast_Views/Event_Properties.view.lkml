@@ -109,12 +109,7 @@ view: event_properties {
 
   dimension: Day {
     type: number
-    sql:  date_diff(${TABLE}.event_time,${TABLE}.install_date,day) ;;
-  }
-
-  dimension: Day_Since_Install {
-    type: number
-    sql:  date_diff(current_timestamp(),${TABLE}.install_date,day) ;;
+    sql:  date_diff(${TABLE}.event_time,${user_properties.install_date_time},day) ;;
   }
 
 
