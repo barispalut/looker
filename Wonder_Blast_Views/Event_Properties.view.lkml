@@ -109,7 +109,7 @@ view: event_properties {
 
   dimension: Day {
     type: number
-    sql:  date_diff(datetime(${TABLE}.event_time),datetime(${user_properties.install_date_time}),day) ;;
+    sql:  date_diff(timestamp(${TABLE}.event_time),timestamp(${user_properties.install_date_time}),day) ;;
   }
 
 
