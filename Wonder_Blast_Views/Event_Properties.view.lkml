@@ -119,6 +119,11 @@ view: event_properties {
   }
 
 
+  dimension: mobile_brand_name {
+    type: string
+    sql:  ${TABLE}.device_mobile_brand_name ;;
+  }
+
   dimension: level_key {
     type: string
     sql:  ${TABLE}.level_key ;;
