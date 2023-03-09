@@ -119,7 +119,7 @@ view: event_properties {
   }
 
 
-  dimension: device_mobile_model_name {
+  dimension: mobile_model_name {
     type: string
     sql:  ${TABLE}.device_mobile_model_name ;;
   }
