@@ -447,5 +447,9 @@ view: level {
     sql:  ${TABLE}.Last_to_First ;;
   }
 
+  dimension: try_progress {
+    type: number
+    sql:  ${TABLE}.try_progress ;;
+  }
 
 }
