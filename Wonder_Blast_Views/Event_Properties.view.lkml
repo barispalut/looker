@@ -129,7 +129,10 @@ view: event_properties {
     sql:  ${TABLE}.level_key ;;
     hidden: yes
   }
-
+  dimension: platform {
+    type: string
+    sql:  ${TABLE}.platform ;;
+  }
 }
 
 # view: event_properties {
