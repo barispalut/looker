@@ -24,6 +24,11 @@ view: user_properties {
     sql:  ${TABLE}.total_IAP_value ;;
   }
 
+  dimension: total_IAP_count{
+    type: number
+    sql:  ${TABLE}.total_iAP_count ;;
+  }
+
 
   dimension: Day_Since_Install {
     type: number
