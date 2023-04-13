@@ -176,9 +176,9 @@ view: iap {
   dimension: monetary {
     type:  number
     sql: case
-          when (${total_amount} >= 100) then 1
-          when (${days_since_last_purchase} >= 30 AND (${days_since_last_purchase} < 100)) then 2
-          when (${days_since_last_purchase} >= 1 AND (${days_since_last_purchase} < 30)) then 3
+          when (${total_purchase} >= 100) then 1
+          when (${total_purchase} >= 30 AND (${total_purchase} < 100)) then 2
+          when (${total_purchase} >= 1 AND (${total_purchase} < 30)) then 3
           else null end;;
   }
 
