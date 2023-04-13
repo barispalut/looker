@@ -137,9 +137,9 @@ view: iap {
     sql:  ${TABLE}.total_rev_user ;;
   }
 
-  dimension: lagged_level {
+  dimension: iap_level_difference {
     type: number
-    sql:  ${TABLE}.lagged_level ;;
+    sql:  ${TABLE}.iap_level_difference ;;
   }
 
 }
