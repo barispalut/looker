@@ -195,7 +195,7 @@ view: iap {
     sql: case
           when (${score} = "111") then low_life_users
           when (${score} = "444" OR ${score} = "344" ) then amazing_users
-          else null;;
+          else null end;;
   }
 }
 
