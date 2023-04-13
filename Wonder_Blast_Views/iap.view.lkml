@@ -176,9 +176,9 @@ view: iap {
   dimension: monetary {
     type:  number
     sql: case
-          when (${total_purchase} >= 100) then 1
+          when (${total_purchase} >= 100) then 3
           when (${total_purchase} >= 30 AND (${total_purchase} < 100)) then 2
-          when (${total_purchase} >= 1 AND (${total_purchase} < 30)) then 3
+          when (${total_purchase} >= 1 AND (${total_purchase} < 30)) then 1
           else null end;;
   }
 
