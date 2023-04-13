@@ -181,7 +181,8 @@ view: iap {
           when (${total_amount} >= 100) then 1
           when (${days_since_last_purchase} >= 50 AND (${days_since_last_purchase} < 100)) then 2
           when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 50)) then 3
-          else 4 end;;
+          when (${days_since_last_purchase} >= 1 AND (${days_since_last_purchase} < 10)) then 4
+          else null end;;
   }
 
   dimension: score {
