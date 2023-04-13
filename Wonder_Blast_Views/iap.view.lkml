@@ -160,28 +160,25 @@ view: iap {
   dimension: recency {
     type:  number
     sql: case
-          when (${days_since_last_purchase} >= 15) then 1
-          when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 15)) then 2
-          when (${days_since_last_purchase} >= 5 AND (${days_since_last_purchase} < 10)) then 3
-          else 4 end;;
+          when (${days_since_last_purchase} >= 5) then 1
+          when (${days_since_last_purchase} >= 1 AND (${days_since_last_purchase} < 5)) then 2
+          else null end;;
   }
 
   dimension: frequency {
     type:  number
     sql: case
-          when (${total_amount} >= 9) then 1
-          when (${days_since_last_purchase} >= 5 AND (${days_since_last_purchase} < 9)) then 2
-          when (${days_since_last_purchase} >= 2 AND (${days_since_last_purchase} < 5)) then 3
-          else 4 end;;
+          when (${total_amount} >= 9) then 2
+          when (${total_amount} >= 1 AND (${total_amount} < 9)) then 1
+          else null end;;
   }
 
   dimension: monetary {
     type:  number
     sql: case
           when (${total_amount} >= 100) then 1
-          when (${days_since_last_purchase} >= 50 AND (${days_since_last_purchase} < 100)) then 2
-          when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 50)) then 3
-          when (${days_since_last_purchase} >= 1 AND (${days_since_last_purchase} < 10)) then 4
+          when (${days_since_last_purchase} >= 30 AND (${days_since_last_purchase} < 100)) then 2
+          when (${days_since_last_purchase} >= 1 AND (${days_since_last_purchase} < 30)) then 3
           else null end;;
   }
 
@@ -194,10 +191,14 @@ view: iap {
   dimension: segment {
     type: string
     sql: case
-          when (${score} = '111') then "lost"
-          when (${score} = '444') then "champions"
-          when (${score} = '144') then "can't lose them"
-          when (${score} = '411') then "price sensitive"
+          when (${score} = '111' OR ${score} = '112') then "lost"
+          when (${score} = '113' OR ${score} = '121') then "hibernating"
+          when (${score} = '122' OR ${score} = '123') then "can't lose them"
+          when (${score} = '211') then "price sensitive"
+          when (${score} = '212') then "recent users"
+          when (${score} = '213' OR ${score} = '221') then "potential loyalist"
+          when (${score} = '222') then "loyal customers"
+          when (${score} = '223') then "champions"
           else null end;;
   }
 }
