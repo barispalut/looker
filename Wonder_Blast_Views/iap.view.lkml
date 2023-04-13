@@ -142,6 +142,54 @@ view: iap {
     sql:  ${TABLE}.iap_level_difference ;;
   }
 
+  dimension: days_since_last_purchase {
+    type: number
+    sql:  ${TABLE}.days_since_last_purchase ;;
+  }
+
+  dimension: total_purchase {
+    type: number
+    sql:  ${TABLE}.total_purchase ;;
+  }
+
+  dimension: total_amount {
+    type: number
+    sql:  ${TABLE}.total_amount ;;
+  }
+
+  dimension: recency {
+    type:  number
+    sql: case
+          when (${days_since_last_purchase} >= 15) then 4
+          when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 15)) then 3
+          when (${days_since_last_purchase} >= 5 AND (${days_since_last_purchase} < 10)) then 2
+          else 1 end;;
+  }
+
+  dimension: frequency {
+    type:  number
+    sql: case
+          when (${total_amount} >= 9) then 1
+          when (${days_since_last_purchase} >= 5 AND (${days_since_last_purchase} < 9)) then 2
+          when (${days_since_last_purchase} >= 2 AND (${days_since_last_purchase} < 5)) then 3
+          else 4 end;;
+  }
+
+  dimension: monetary {
+    type:  number
+    sql: case
+          when (${total_amount} >= 100) then 1
+          when (${days_since_last_purchase} >= 50 AND (${days_since_last_purchase} < 100)) then 2
+          when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 50)) then 3
+          else 4 end;;
+  }
+
+  dimension: score {
+    description: "A combination of recency frequency and monetary in this order"
+    type: string
+    sql: concat(${recency},${frequency},${monetary}) ;;
+  }
+
 }
 
 # view: iap {
