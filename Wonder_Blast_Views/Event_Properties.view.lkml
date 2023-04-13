@@ -38,7 +38,6 @@ view: event_properties {
   dimension: episode_id {
     type: number
     sql:  ${TABLE}.episode_id ;;
-    hidden: yes
   }
 
   dimension: level_progress {
