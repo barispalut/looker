@@ -160,10 +160,10 @@ view: iap {
   dimension: recency {
     type:  number
     sql: case
-          when (${days_since_last_purchase} >= 15) then 4
-          when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 15)) then 3
-          when (${days_since_last_purchase} >= 5 AND (${days_since_last_purchase} < 10)) then 2
-          else 1 end;;
+          when (${days_since_last_purchase} >= 15) then 1
+          when (${days_since_last_purchase} >= 10 AND (${days_since_last_purchase} < 15)) then 2
+          when (${days_since_last_purchase} >= 5 AND (${days_since_last_purchase} < 10)) then 3
+          else 4 end;;
   }
 
   dimension: frequency {
@@ -193,8 +193,8 @@ view: iap {
   dimension: segment {
     type: string
     sql: case
-          when (${score} = "111") then low_life_users
-          when (${score} = "444" OR ${score} = "344" ) then amazing_users
+          when (${score} = '111') then low_life_users
+          when (${score} = '444' OR ${score} = '344' ) then amazing_users
           else null end;;
   }
 }
