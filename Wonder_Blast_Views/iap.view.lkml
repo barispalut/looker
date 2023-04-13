@@ -190,6 +190,13 @@ view: iap {
     sql: concat(${recency},${frequency},${monetary}) ;;
   }
 
+  dimension: segment {
+    type: string
+    sql: case
+          when (${score} = "111") then low_life_users
+          when (${score} = "444" OR ${score} = "344" ) then amazing_users
+          else null;;
+  }
 }
 
 # view: iap {
