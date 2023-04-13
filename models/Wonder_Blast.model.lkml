@@ -199,10 +199,4 @@ explore: user_properties {
     relationship: one_to_many
   }
 
-  join:iap_level_interval  {
-    type: left_outer
-    sql_on:  ${event_properties.episode_id} = ${iap_level_interval.episode_id}  ;;
-    relationship: many_to_one
-  }
-
 }

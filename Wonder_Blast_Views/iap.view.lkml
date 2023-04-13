@@ -1,5 +1,5 @@
 view: iap {
-  sql_table_name: `big-blast.analytics_270556009.iap_p1` ;;
+  sql_table_name: `big-blast.analytics_270556009.iap_p1_view` ;;
 
   dimension: user_id {
     type: string
@@ -23,6 +23,12 @@ view: iap {
   dimension: collection_id {
     type: number
     sql:  ${TABLE}.collection_id ;;
+    hidden: yes
+  }
+
+  dimension: episode_id {
+    type: number
+    sql:  ${TABLE}.episode_id ;;
     hidden: yes
   }
 
@@ -129,6 +135,11 @@ view: iap {
   dimension: total_rev_user {
     type: number
     sql:  ${TABLE}.total_rev_user ;;
+  }
+
+  dimension: lagged_level {
+    type: number
+    sql:  ${TABLE}.lagged_level ;;
   }
 
 }
