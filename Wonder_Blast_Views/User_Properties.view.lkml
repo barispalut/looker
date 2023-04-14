@@ -29,6 +29,11 @@ view: user_properties {
     sql:  ${TABLE}.total_iAP_count ;;
   }
 
+  dimension: max_IAP_count{
+    type: number
+    sql:  ${TABLE}.max_iAP_count ;;
+  }
+
 
   dimension: Day_Since_Install {
     type: number
