@@ -132,6 +132,12 @@ view: event_properties {
     type: string
     sql:  ${TABLE}.platform ;;
   }
+  dimension_group: max_event_time {
+    type: time
+    timeframes: [date,month,week,time]
+    sql:  ${TABLE}.max_event_time;;
+  }
+
 }
 
 # view: event_properties {
