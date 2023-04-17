@@ -191,13 +191,9 @@ view: iap {
   dimension: segment {
     type: string
     sql: case
-          when (${score} = '111' OR ${score} = '112') then "lost"
-          when (${score} = '113' OR ${score} = '121') then "hibernating"
+          when (${score} = '111' OR ${score} = '112' OR ${score} = '113' OR ${score} = '121') then "lost"
           when (${score} = '122' OR ${score} = '123') then "can't lose them"
-          when (${score} = '211') then "price sensitive"
-          when (${score} = '212') then "recent users"
-          when (${score} = '213' OR ${score} = '221') then "potential loyalist"
-          when (${score} = '222') then "loyal customers"
+          when (${score} = '212' OR ${score} = '211' OR ${score} = '213' OR ${score} = '221' OR ${score} = '222') then "recent users"
           when (${score} = '223') then "champions"
           else null end;;
   }
