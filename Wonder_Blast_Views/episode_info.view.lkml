@@ -10,7 +10,7 @@ view: episode_info {
   }
 
   dimension: episode_level_count {
-    type: string
+    type: number
     description: "Episode'un son level_id bilgisini belirtir"
     sql:  ${TABLE}.max_level;;
   }
