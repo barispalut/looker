@@ -19,6 +19,12 @@ view: user_properties {
     sql:  ${TABLE}.level_progress ;;
   }
 
+  dimension: current_regular_level_progress {
+    type: number
+    description: "Master Arena harici regular level flow'unda userın hangi levelda olduğu"
+    sql:  ${TABLE}.max_level_id ;;
+  }
+
   dimension: life_time_IAP{
     type: number
     sql:  ${TABLE}.total_IAP_value ;;
