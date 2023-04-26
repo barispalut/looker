@@ -1,54 +1,24 @@
-view: user_properties {
-  sql_table_name: `big-blast.analytics_270556009.User_Properties_view`  ;;
+view: episode_info {
+  sql_table_name: `big-blast.analytics_270556009.episode_level` ;;
 
-  dimension: user_id {
-    type: string
+
+  dimension: episode_id {
+    type: number
     primary_key: yes
-    description: "User Uniq ID"
-    sql: ${TABLE}.user_id ;;
+    sql:  ${TABLE}.episode_id;;
+    hidden: yes
   }
 
-  dimension_group: install_date {
-    type: time
-    timeframes: [date,month,week,time]
-    sql: ${TABLE}.install_date ;;
-  }
-
-  dimension: current_level_progress {
+  dimension: episode_level_count {
     type: number
-    sql:  ${TABLE}.level_progress ;;
+    description: "Episode'un son level_id bilgisini belirtir"
+    sql:  ${TABLE}.max_level;;
   }
 
-  dimension: current_regular_level_progress {
-    type: number
-    description: "Master Arena harici regular level flow'unda userın hangi levelda olduğu"
-    sql:  ${TABLE}.max_level_id ;;
-  }
-
-  dimension: life_time_IAP{
-    type: number
-    sql:  ${TABLE}.total_IAP_value ;;
-  }
-
-  dimension: total_IAP_count{
-    type: number
-    sql:  ${TABLE}.total_iAP_count ;;
-  }
-
-  dimension: max_IAP_count{
-    type: number
-    sql:  ${TABLE}.max_iAP_count ;;
-  }
-
-
-  dimension: Day_Since_Install {
-    type: number
-    sql:  date_diff(current_timestamp(),${TABLE}.install_date,day) ;;
-  }
 
 }
 
-# view: user_properties {
+# view: episode_info {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

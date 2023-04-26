@@ -199,4 +199,11 @@ explore: user_properties {
     relationship: one_to_many
   }
 
+  join:episode_info  {
+    type: left_outer
+    sql_on:  ${event_properties.episode_id} = ${episode_info.episode_id}  ;;
+    relationship: many_to_one
+  }
+
+
 }
