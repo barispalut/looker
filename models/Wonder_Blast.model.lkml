@@ -220,7 +220,7 @@ explore: user_properties {
   join:fps_low_performance_devices  {
     type: left_outer
     sql_on:  ${event_properties.app_version} = ${fps_low_performance_devices.app_version}  ;;
-    relationship: one_to_many
+    relationship: many_to_many
   }
 
 }
