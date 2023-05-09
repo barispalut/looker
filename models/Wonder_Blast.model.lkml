@@ -207,18 +207,3 @@ explore: user_properties {
 
 
 }
-
-
-
-
-
-
-explore: one_two_many_first_table {
-
-  join:one_two_many_second_table  {
-    type: left_outer
-    sql_on: ${one_two_many_first_table.first_column} = ${one_two_many_second_table.first_column} ;;
-    relationship: many_to_one
-  }
-
-}
