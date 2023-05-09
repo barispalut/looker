@@ -211,4 +211,11 @@ explore: user_properties {
     relationship: one_to_many
   }
 
+  join:process_profiler  {
+    type: left_outer
+    sql_on:  ${event_properties.event_key} = ${process_profiler.event_key}  ;;
+    relationship: one_to_many
+  }
+
+
 }
