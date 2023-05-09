@@ -205,5 +205,10 @@ explore: user_properties {
     relationship: many_to_one
   }
 
+  join:performance  {
+    type: left_outer
+    sql_on:  ${event_properties.event_key} = ${performance.event_key}  ;;
+    relationship: one_to_many
+  }
 
 }
