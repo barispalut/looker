@@ -131,6 +131,10 @@ view: event_info {
     type: string
     sql:  ${TABLE}.level_key_2 ;;
   }
+  dimension: platform{
+    type: string
+    sql:  ${TABLE}.platform ;;
+  }
 
 
 }

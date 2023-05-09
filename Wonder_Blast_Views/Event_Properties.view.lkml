@@ -7,6 +7,7 @@ view: event_properties {
     type: string
     sql: ${TABLE}.user_id
       ;;
+    hidden: yes
   }
 
   dimension_group: Install_Date {
@@ -14,6 +15,7 @@ view: event_properties {
     timeframes: [date,month,week,time]
     sql: ${TABLE}.install_date
       ;;
+    hidden: yes
   }
 
   dimension_group: Event_Time {
@@ -35,33 +37,32 @@ view: event_properties {
 
   dimension: episode_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.episode_id ;;
   }
 
   dimension: level_progress {
     type: number
-    hidden: yes
     sql:  ${TABLE}.level_progress ;;
+    hidden: yes
   }
 
   dimension: collection_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.collection_id ;;
+    hidden: yes
   }
 
 
   dimension: level_id {
     type: number
-    hidden: yes
     sql:  ${TABLE}.level_id ;;
+    hidden: yes
   }
 
-  dimension: try_count {
+  dimension: try {
     type: number
-    hidden: yes
     sql:  ${TABLE}.try_count ;;
+    hidden: yes
   }
 
   dimension: sum_iap_lifetime {
@@ -74,7 +75,7 @@ view: event_properties {
     sql:  ${TABLE}.iap_count_lifetime ;;
   }
 
-  dimension: app_verison {
+  dimension: app_version {
     type: number
     sql:  ${TABLE}.app_version ;;
   }
@@ -105,6 +106,10 @@ view: event_properties {
 
   }
 
+  dimension: Day {
+    type: number
+    sql:  date_diff(timestamp(${TABLE}.event_time),timestamp(${user_properties.install_date_time}),day) ;;
+  }
 
 
   dimension: session_count {
@@ -113,9 +118,24 @@ view: event_properties {
   }
 
 
+  dimension: mobile_model_name {
+    type: string
+    sql:  ${TABLE}.device_mobile_model_name ;;
+  }
+
   dimension: level_key {
     type: string
     sql:  ${TABLE}.level_key ;;
+    hidden: yes
+  }
+  dimension: platform {
+    type: string
+    sql:  ${TABLE}.platform ;;
+  }
+  dimension_group: max_event_time {
+    type: time
+    timeframes: [date,month,week,time]
+    sql:  ${TABLE}.max_event_time;;
   }
 
 }

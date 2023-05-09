@@ -31,7 +31,6 @@ view: level {
     type: string
     primary_key: yes
     sql:  ${TABLE}.level_key ;;
-    hidden: yes
   }
 
 
@@ -45,6 +44,7 @@ view: level {
   dimension: episode_id {
     type: number
     sql:  ${TABLE}.episode_id ;;
+    hidden: yes
   }
 
   dimension: level_progress {
@@ -423,15 +423,17 @@ view: level {
     sql:  ${TABLE}.level_quit ;;
   }
 
-  dimension: app_verison {
+  dimension: app_version {
     type: number
     sql:  ${TABLE}.app_version ;;
+    hidden: yes
   }
 
 
   dimension: country {
     type: string
     sql:  ${TABLE}.country ;;
+    hidden: yes
   }
 
   dimension: Level_Churn{
@@ -446,5 +448,9 @@ view: level {
     sql:  ${TABLE}.Last_to_First ;;
   }
 
+  dimension: try_progress {
+    type: number
+    sql:  ${TABLE}.try_progress ;;
+  }
 
 }

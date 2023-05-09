@@ -1,5 +1,5 @@
 view: iap {
-  sql_table_name: `big-blast.analytics_270556009.iap_p1` ;;
+  sql_table_name: `big-blast.analytics_270556009.iap_p1_view` ;;
 
   dimension: user_id {
     type: string
@@ -23,6 +23,12 @@ view: iap {
   dimension: collection_id {
     type: number
     sql:  ${TABLE}.collection_id ;;
+    hidden: yes
+  }
+
+  dimension: episode_id {
+    type: number
+    sql:  ${TABLE}.episode_id ;;
     hidden: yes
   }
 
@@ -131,6 +137,66 @@ view: iap {
     sql:  ${TABLE}.total_rev_user ;;
   }
 
+  dimension: iap_level_difference {
+    type: number
+    sql:  ${TABLE}.iap_level_difference ;;
+  }
+
+  dimension: days_since_last_purchase {
+    type: number
+    sql:  ${TABLE}.days_since_last_purchase ;;
+  }
+
+  dimension: total_purchase {
+    type: number
+    sql:  ${TABLE}.total_purchase ;;
+  }
+
+  dimension: total_amount {
+    type: number
+    sql:  ${TABLE}.total_amount ;;
+  }
+
+  dimension: recency {
+    type:  number
+    sql: case
+          when (${days_since_last_purchase} >= 5) then 1
+          when (${days_since_last_purchase} >= 1 AND (${days_since_last_purchase} < 5)) then 2
+          else null end;;
+  }
+
+  dimension: frequency {
+    type:  number
+    sql: case
+          when (${total_amount} >= 9) then 2
+          when (${total_amount} >= 1 AND (${total_amount} < 9)) then 1
+          else null end;;
+  }
+
+  dimension: monetary {
+    type:  number
+    sql: case
+          when (${total_purchase} >= 100) then 3
+          when (${total_purchase} >= 30 AND (${total_purchase} < 100)) then 2
+          when (${total_purchase} >= 1 AND (${total_purchase} < 30)) then 1
+          else null end;;
+  }
+
+  dimension: score {
+    description: "A combination of recency frequency and monetary in this order"
+    type: string
+    sql: concat(${recency},${frequency},${monetary}) ;;
+  }
+
+  dimension: segment {
+    type: string
+    sql: case
+          when (${score} = '111' OR ${score} = '112' OR ${score} = '113' OR ${score} = '121') then "lost"
+          when (${score} = '122' OR ${score} = '123') then "can't lose them"
+          when (${score} = '212' OR ${score} = '211' OR ${score} = '213' OR ${score} = '221' OR ${score} = '222') then "recent users"
+          when (${score} = '223') then "champions"
+          else null end;;
+  }
 }
 
 # view: iap {
