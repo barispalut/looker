@@ -136,5 +136,18 @@ view: event_info {
     sql:  ${TABLE}.platform ;;
   }
 
+  dimension: network{
+    type: string
+    sql:  ${TABLE}.network ;;
+  }
+
+  dimension: campaign{
+    type: string
+    sql:  ${TABLE}.campaign ;;
+  }
+
+
+
+
 
 }
