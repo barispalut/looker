@@ -143,6 +143,17 @@ view: event_properties {
     sql:  ${TABLE}.max_event_time;;
   }
 
+
+  dimension: network{
+    type: string
+    sql:  ${TABLE}.network ;;
+  }
+
+  dimension: campaign{
+    type: string
+    sql:  ${TABLE}.campaign ;;
+  }
+
 }
 
 # view: event_properties {
