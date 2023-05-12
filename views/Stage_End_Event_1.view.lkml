@@ -90,15 +90,4 @@ view: stage_end_event_1 {
     type: number
     sql:  ${TABLE}.overall_point ;;
   }
-
-  dimension: bpm {
-    type: number
-    sql:  ${TABLE}.bpm ;;
-  }
-
-
-
-
-
-
 }

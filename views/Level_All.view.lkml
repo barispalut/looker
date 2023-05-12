@@ -456,5 +456,10 @@ view: level_all {
     sql:  ${TABLE}.Last_to_First ;;
   }
 
+  dimension: bpm {
+    type: number
+    sql:  ${TABLE}.bpm ;;
+  }
+
 
 }

@@ -453,4 +453,9 @@ view: level {
     sql:  ${TABLE}.try_progress ;;
   }
 
+  dimension: bpm {
+    type: number
+    sql:  ${TABLE}.bpm ;;
+  }
+
 }
