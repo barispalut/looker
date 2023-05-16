@@ -63,7 +63,7 @@ view: ego_event {
   }
 
   dimension: screen_one_play_on {
-    type: string
+    type: number
     sql:  ${TABLE}.screen_one_play_on;;
   }
 
@@ -73,7 +73,7 @@ view: ego_event {
   }
 
   dimension: screen_two_play_on {
-    type: string
+    type: number
     sql:  ${TABLE}.screen_two_play_on;;
   }
 
@@ -83,22 +83,22 @@ view: ego_event {
   }
 
   dimension: screen_three_play_on {
-    type: string
+    type: number
     sql:  ${TABLE}.screen_three_play_on;;
   }
 
   dimension: final_board_hp {
-    type: string
+    type: number
     sql:  ${TABLE}.final_board_hp;;
   }
 
   dimension: initial_board_hp {
-    type: string
+    type: number
     sql:  ${TABLE}.initial_board_hp;;
   }
 
   dimension: ego_used {
-    type: string
+    type: number
     sql:  ${TABLE}.ego_used;;
   }
 
