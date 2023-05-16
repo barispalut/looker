@@ -217,5 +217,11 @@ explore: user_properties {
     relationship: one_to_many
   }
 
+  join:ego_event  {
+    type: left_outer
+    sql_on:  ${event_properties.event_key} = ${ego_event.event_key}  ;;
+    relationship: one_to_many
+  }
+
 
 }
