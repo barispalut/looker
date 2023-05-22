@@ -46,6 +46,11 @@ view: user_properties {
     sql:  date_diff(current_timestamp(),${TABLE}.install_date,day) ;;
   }
 
+  dimension: install_app_version {
+    type: number
+    sql:  install_app_version ;;
+  }
+
 }
 
 # view: user_properties {

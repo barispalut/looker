@@ -1,5 +1,5 @@
 view: process_profiler {
-  sql_table_name: `big-blast.analytics_270556009.process_profiler`  ;;
+  sql_table_name: `big-blast.analytics_270556009.process_profiler_view`  ;;
 
   dimension: user_id {
     type: string
@@ -151,6 +151,17 @@ view: process_profiler {
     type: number
     sql:  ${TABLE}.duration_wait_for_player_init ;;
   }
+
+  dimension: version_first_open {
+    type: number
+    sql:  ${TABLE}.version_first_open ;;
+  }
+
+  dimension: version_entry_success {
+    type: number
+    sql:  ${TABLE}.version_entry_success ;;
+  }
+
 
 
 
