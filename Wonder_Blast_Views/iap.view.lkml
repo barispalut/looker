@@ -157,6 +157,11 @@ view: iap {
     sql:  ${TABLE}.total_amount ;;
   }
 
+  dimension: First_IAP_Flag {
+    type: number
+    sql:  ${TABLE}.First_IAP_Flag ;;
+  }
+
   dimension: recency {
     type:  number
     sql: case

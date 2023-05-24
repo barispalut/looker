@@ -51,6 +51,18 @@ view: user_properties {
     sql:  install_app_version ;;
   }
 
+  dimension: First_Below_900_Coin_Level {
+    type: number
+    description: "User'ın ilk 900 Coinin altında düştüğünde kaçıncı levelda olduğu"
+    sql:  ${TABLE}.First_Below_900_Coin_Level ;;
+  }
+
+  dimension: First_0_Life_Level {
+    type: number
+    description: "User'ın ilk 0 cana düştüğünde kaçıncı levelda olduğu"
+    sql:  ${TABLE}.First_0_Life_Level ;;
+  }
+
 }
 
 # view: user_properties {
