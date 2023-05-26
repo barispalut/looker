@@ -63,6 +63,12 @@ view: user_properties {
     sql:  ${TABLE}.First_0_Life_Level ;;
   }
 
+  dimension: firstIAPItemPrice {
+    type: number
+    description: "User'ın ilk iAP Yaptigi Anin Price Degeri"
+    sql:  ${TABLE}.firstIAPItemPrice ;;
+  }
+
 }
 
 # view: user_properties {
