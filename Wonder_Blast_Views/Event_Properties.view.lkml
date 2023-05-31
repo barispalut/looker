@@ -154,6 +154,12 @@ view: event_properties {
     sql:  ${TABLE}.campaign ;;
   }
 
+  dimension_group: episode_entry_time {
+    type: time
+    timeframes: [date,month,week,time]
+    sql:  ${TABLE}.episode_entry_time;;
+  }
+
 }
 
 # view: event_properties {
