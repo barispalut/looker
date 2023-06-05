@@ -458,4 +458,9 @@ view: level {
     sql:  ${TABLE}.bpm ;;
   }
 
+  dimension: try_progress_without_ma {
+    type: number
+    sql:  ${TABLE}.try_progress_without_ma ;;
+  }
+
 }
