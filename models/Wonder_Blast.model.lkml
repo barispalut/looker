@@ -223,5 +223,10 @@ explore: user_properties {
     relationship: one_to_many
   }
 
+  join:user_performance_spike  {
+    type: left_outer
+    sql_on: ${user_properties.user_id} = ${user_performance_spike.user_id}  ;;
+    relationship: one_to_many
+  }
 
 }
