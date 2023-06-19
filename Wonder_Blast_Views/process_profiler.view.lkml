@@ -41,6 +41,10 @@ view: process_profiler {
     sql:  ${TABLE}.loading_time ;;
   }
 
+  dimension: loading_time_without_download {
+    type: number
+    sql:  ${TABLE}.loading_time_without_download ;;
+  }
   dimension: duration_asset_manager {
     type: number
     sql:  ${TABLE}.duration_asset_manager ;;
@@ -164,12 +168,12 @@ view: process_profiler {
 
   dimension: duration_preload_bundles_with_download {
     type: number
-    sql:  ${TABLE}.duration_wait_for_player_init ;;
+    sql:  ${TABLE}.duration_preload_bundles_with_download ;;
   }
 
   dimension: duration_preload_bundles_without_download {
     type: number
-    sql:  ${TABLE}.duration_wait_for_player_init ;;
+    sql:  ${TABLE}.duration_preload_bundles_without_download ;;
   }
 
 
