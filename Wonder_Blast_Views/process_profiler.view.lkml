@@ -162,7 +162,15 @@ view: process_profiler {
     sql:  ${TABLE}.version_entry_success ;;
   }
 
+  dimension: duration_preload_bundles_with_download {
+    type: number
+    sql:  ${TABLE}.duration_wait_for_player_init ;;
+  }
 
+  dimension: duration_preload_bundles_without_download {
+    type: number
+    sql:  ${TABLE}.duration_wait_for_player_init ;;
+  }
 
 
 }
