@@ -468,8 +468,9 @@ view: level {
     sql:  ${TABLE}.level_episode ;;
   }
 
-  dimension: level_episode_entry_time {
-    type: number
+  dimension_group: level_episode_entry_time {
+    type: time
+    timeframes: [date,month,week,time]
     sql:  ${TABLE}.level_episode_entry_time ;;
   }
 
