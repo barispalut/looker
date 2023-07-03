@@ -463,4 +463,15 @@ view: level {
     sql:  ${TABLE}.try_progress_without_ma ;;
   }
 
+  dimension: level_episode {
+    type: number
+    sql:  ${TABLE}.level_episode ;;
+  }
+
+  dimension: level_episode_entry_time {
+    type: number
+    sql:  ${TABLE}.level_episode_entry_time ;;
+  }
+
+
 }
