@@ -160,6 +160,17 @@ view: event_properties {
     sql:  ${TABLE}.episode_entry_time;;
   }
 
+  dimension: kr_episode {
+    type: number
+    sql:  ${TABLE}.kr_episode ;;
+  }
+
+  dimension_group: kr_episode_entry_time {
+    type: time
+    timeframes: [date,month,week,time]
+    sql:  ${TABLE}.kr_episode_entry_time;;
+  }
+
 }
 
 # view: event_properties {
