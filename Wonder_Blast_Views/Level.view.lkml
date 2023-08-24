@@ -308,6 +308,11 @@ view: level {
     sql:  ${TABLE}.start_move_count ;;
   }
 
+  dimension: ds_start_move_count {
+    type: number
+    sql:  ${TABLE}.ds_start_move_count ;;
+  }
+
   dimension: rem_move_count {
     type: number
     sql:  ${TABLE}.rem_move_count ;;
@@ -417,6 +422,35 @@ view: level {
     sql:  ${TABLE}.first_UltiC_move ;;
   }
 
+  dimension: ultiA_total {
+    type: number
+    sql:  ${TABLE}.ultiA_total ;;
+  }
+
+  dimension: ultiB_total {
+    type: number
+    sql:  ${TABLE}.ultiB_total ;;
+  }
+
+  dimension: ultiC_total {
+    type: number
+    sql:  ${TABLE}.ultiC_total ;;
+  }
+
+  dimension: ultiA_click_exploded {
+    type: number
+    sql:  ${TABLE}.ultiA_click_exploded ;;
+  }
+
+  dimension: ultiB_click_exploded {
+    type: number
+    sql:  ${TABLE}.ultiB_click_exploded ;;
+  }
+
+  dimension: ultiC_click_exploded {
+    type: number
+    sql:  ${TABLE}.ultiC_click_exploded ;;
+  }
 
   dimension: level_quit {
     type: number
