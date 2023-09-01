@@ -472,7 +472,7 @@ view: level {
 
   dimension: Level_Churn{
     type: string
-    sql:  case when date_diff (${TABLE}.next_event_time, ${TABLE}.event_time, hour) >= 72 then "C" else null end  ;;
+    sql:  case when  ${TABLE}.next_event_time is null and date_diff (current_timestamp(), ${TABLE}.event_time, hour) > 72 then "C" else null end  ;;
 
   }
 
